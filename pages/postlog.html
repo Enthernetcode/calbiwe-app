@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defibrillator - Calbiwe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/logo.png" />
+    <link rel="stylesheet" href="../custom/styles.css">
+   
+</head>
+<body>
+
+      <!-- Loader -->
+<div id="loader" class="position-fixed w-100 h-100 bg-light" style="z-index: 11111111111;">
+  <div class="spinner-border" style="color: teal;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+    
+  <!-- Confirm component starts -->
+  <div id="confirm" class="position-fixed p-3" style="background-color: rgba(0, 128, 128, 0.082);width: 100vw;height: 100vh;z-index: 1111111111;">
+    <div id="card" class="confirm">
+       <h4 class="manrope"> Are you sure to take this action?</h4>
+       <div class="d-flex gap-2 align-items-center justify-content-center w-100 ">
+         <div class="nobtn manrope">Cancel</div>
+         <div class="yesbtn manrope">Proceed</div>
+       </div>
+    </div>
+</div>
+<!-- Confirm component ends -->
+
+ <!-- Nav bar components starts  -->
+<div class="d-flex flex-column w-100 ">
+<nav class="d-flex flex-column gap-2 navbg  w-100 position-sticky top-0 p-3">
+    <div class="d-flex flex-wrap  align-items-center gap-3">
+      <a href="equ.html" class="fa fa-arrow-left fs-24" style="text-decoration:none; color:teal;"></a>
+            <span class="aeonik " style="color: teal;font-size: 16px; font-weight: 700;">
+                Defibrillator > <span style="color: #a2a1ab;font-weight: 500;">Create Log</span>
+            </span>
+    </div>
+    
+</nav>
+<!-- Nav bar components end -->
+<div class="d-flex w-100 p-3 equbg align-items-center justify-content-between flex-wrap  gap-2">
+        <span class="aeonik d-flex align-items-center gap-2 flex-wrap " style="color: teal;font-size: 30px; font-weight: 700;">
+         <img src="../assets/equipment.webp" alt="equipment" class="object-fit-cover equipment">  <div class="d-flex flex-column manrope">Defibrillator
+         </div>
+        </span>
+ 
+    </div>
+
+
+<!-- elog editable bar components start -->
+<div class="w-100 max-w-505 p-3">
+<div class="d-flex flex-column p-2 elog manrope">
+  <div>Problem:</div>
+<input placeholder="What's wrong with the device" style="outline:none; border: none; background: transparent;">
+  </div>
+<div class="d-flex flex-column p-2 elog manrope">
+  <div>Engineer name:</div>
+<input placeholder="What's your full name" style="outline:none; border: none; background: transparent;">
+  </div>
+<div class="d-flex flex-column p-2 elog manrope">
+  <div>Condition:</div>
+<input placeholder="that's the device current state" style="outline:none; border: none; background: transparent;">
+  </div>
+<div class="d-flex flex-column p-2 elog manrope">
+  <div>Status:</div>
+<input placeholder="Manual or Automatic or Wearable" style="outline:none; border: none; background: transparent;">
+  </div>
+<div class="d-flex flex-column p-2 elog manrope">
+  <div>Job type:</div>
+<input placeholder="What kind of maintenance is carried out" style="outline:none; border: none; background: transparent;">
+  </div>
+<div class="d-flex flex-column p-2 elog manrope">
+  <div>Due maintenance date:</div>
+<input placeholder="Enter the due maintenance date" style="outline:none; border: none; background: transparent;">
+  </div>
+<div class="confirm-btn dep formbtn max-w-505 fw-bolder gap-2" style="background: tomato;color: #ffffff;">Create <i class="fa fa-check"></i></div>
+</div>
+<!-- elog editable bar components end -->
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="../index.js"></script>
+</body>
+</html>
