@@ -132,5 +132,24 @@
             });
         });
     </script>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+    import { getDatabase, ref, update, remove} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+    var adm, bal, use, btn, btnDel;
+    adm = document.getElementById('adm');
+    bal = document.getElementById('bal');
+    btn = document.getElementById('btn');
+    btnDel = document.getElementById('btn-del');
+    use = document.getElementById('use');
+    // Initialize Firebase
+    const firebaseConfig = {
+          apiKey: "AIzaSyACQcdYNFIvnnahAUWQQJhioJYMYrrW_VE",
+          authDomain: "insure-8082d.firebaseapp.com",
+          databaseURL: "https://insure-8082d-default-rtdb.firebaseio.com",
+          projectId: "insure-8082d",
+          storageBucket: "insure-8082d.appspot.com",
+          messagingSenderId: "524758809898",
+          appId: "1:524758809898:web:f52528d42244829a917253"
+    };
 </body>
 </html>
