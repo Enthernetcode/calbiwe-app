@@ -18,7 +18,7 @@
             
             <div class="auth-logo-cont">
                 <div class="auth-img"> <img src="../assets/logo.gif" alt="logo" style="width: 50px;height: 50px;"></div>
-                    <span class="auth-logo-text" style="color: red;">
+                    <span class="auth-logo-text" style="color: tomato;">
                         Calbiwe
                     </span>
             </div>
@@ -28,13 +28,13 @@
             <div class="auth-logo-cont-form">
                
                 <div class="auth-img-form"> <img src="../assets/logo.gif" alt="logo"></div>
-                    <span class="auth-logo-text-form" style="color: red;">
+                    <span class="auth-logo-text-form" style="color: tomato;">
                         Calbiwe
                     </span>
             </div>
             <div class="d-flex flex-column gap-1 w-100">
                 <div class="auth-title" style="color: rgba(255, 99, 71, 0.904); font-size: 14px;">Create your hospital pass-codes</div>
-                <div class="auth-title" style="color: green;">Sign up</div>
+                <div class="auth-title" style="color: teal;">Sign up</div>
             </div>
             
             <div class="auth-form  ">
@@ -53,7 +53,7 @@
                 <button id="signup">Sign Up</button>
             </div>
             <div class="auth-signin-sub">
-                <div class="auth-signin-sub-child" style="color: green;">Already registered hospital? <a href="../index.html">Sign in</a></div>
+                <div class="auth-signin-sub-child" style="color: teal;">Already registered hospital? <a href="../index.html">Sign in</a></div>
             </div>
         </div>
     </main>
@@ -106,27 +106,27 @@ const firebaseConfig = {
             if (apassword === "" || apassword.length < minPasswordLength || 
                 (apassword === spassword) || (apassword === epassword)) {
               apasswordLabel.textContent = "Password invalid*";
-              apasswordLabel.style.color = "red";
+              apasswordLabel.style.color = "tomato";
               isValid = false;
             }
       
             if (spassword === "" || spassword.length < minPasswordLength || 
                 (spassword === apassword) || (spassword === epassword)) {
               spasswordLabel.textContent = "Password invalid*";
-              spasswordLabel.style.color = "red";
+              spasswordLabel.style.color = "tomato";
               isValid = false;
             }
       
             if (epassword === "" || epassword.length < minPasswordLength || 
                 (epassword === apassword) || (epassword === spassword)) {
               epasswordLabel.textContent = "Password invalid*";
-              epasswordLabel.style.color = "red";
+              epasswordLabel.style.color = "tomato";
               isValid = false;
             }
       
             // If validation passes
             if (isValid) {
-                signupButton.innerText="...";
+                signupButton.innerText="A moment...";
                 const name = localStorage.getItem("cname");
                 const email = localStorage.getItem("cemail");
                 const hospital = localStorage.getItem("chospital");
@@ -142,6 +142,53 @@ const firebaseConfig = {
                 apassword: apassword,
                 spassword: spassword,
                 epassword: epassword,
+                departments: [
+                  {
+                    name:"Emergency Department (ED)",
+                    hospital: hospital,
+                    desc: `The emergency department (ED) in a hospital
+                     is a specialized unit designed to provide immediate 
+                     medical care to patients with acute illnesses or injuries.`,
+                     equipments:[
+                      {
+                        name: "Defibrillator",
+                        img: `https://www.gimaitaly.com/it/assets/altreimmagini/55514.jpg`,
+                        desc: `A defibrillator is a medical device used to deliver
+                         an electric shock to the heart in order to restore normal heart rhythm during sudden cardiac arrest.`,
+                         equiplog: {
+                          condition: "Functional",
+                          type: "Automated",
+                          serialno: "DEF123456789",
+                          manufacturer: "Meditech Solutions Inc.",
+                          modelno: "DFR-2000",
+                          omanufacturer: "Meditech Innovations Ltd.",
+                          warranty: "Expires on 31/12/2025",
+                          cost: 1500000.00,
+                          rif: "Medium",
+                          location: "Emergency Room",
+                          status: "Available",
+                          supplier: "Lifeline Medical Supplies Ltd.",
+                          purchorder: "PO-123456",
+                          purchcost: 1800000.00,
+                          eac: 2000000.00,
+                          remark: "Device serviced annually; Next maintenance due in July 2024",
+                         },
+                         mainlogs:[
+                          {
+                              equipment: "Defibrillator",
+                              img: `https://www.gimaitaly.com/it/assets/altreimmagini/55514.jpg`,
+                              problem: "Device fails to power on intermittently",
+                              engr: "Reniel Chika",
+                              condition: "On repair",
+                              status: "Manual",
+                              tobtype: "Routine maintenance",
+                              dmd: "21-12-24",
+                          }
+                         ]
+                      }
+                     ]
+                  }
+                ]
             }
             )
             .then(()=>{
@@ -150,7 +197,7 @@ const firebaseConfig = {
               const successAlert = document.createElement("div");
                 successAlert.classList.add("alert");
                 successAlert.innerHTML = `
-                  <i class="fa fa-check d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:green;"></i>
+                  <i class="fa fa-check d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:teal;"></i>
                   <div class="alert-text">Registered Successfully</div>
                 `;
                 successAlert.style.top = "-50px";
@@ -162,17 +209,7 @@ const firebaseConfig = {
       
                 setTimeout(() => {
                   successAlert.remove();
-                  localStorage.setItem('user', JSON.stringify({
-                date: Date.now(),
-                name: name,
-                email: email,
-                hospital: hospital,
-                address: address,
-                apassword: apassword,
-                spassword: spassword,
-                epassword: epassword,
-            }));
-                  window.location.href = "../pages/index.html";
+                  window.location.href = "../index.html";
                 }, 2000);
             })
             .catch((error)=>{
@@ -181,7 +218,7 @@ const firebaseConfig = {
                 const errorAlert = document.createElement("div");
                 errorAlert.classList.add("alert");
                 errorAlert.innerHTML = `
-                  <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:green;"></i>
+                  <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:tomato;"></i>
                   <div class="alert-text-danger">Error occured!</div>
                 `;
                 errorAlert.style.top = "-50px";
@@ -206,7 +243,7 @@ const firebaseConfig = {
             //     const successAlert = document.createElement("div");
             //     successAlert.classList.add("alert");
             //     successAlert.innerHTML = `
-            //       <i class="fa fa-check d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:green;"></i>
+            //       <i class="fa fa-check d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:teal;"></i>
             //       <div class="alert-text">Registered Successfully</div>
             //     `;
             //     successAlert.style.top = "-50px";
@@ -225,7 +262,7 @@ const firebaseConfig = {
             //     const errorAlert = document.createElement("div");
             //     errorAlert.classList.add("alert");
             //     errorAlert.innerHTML = `
-            //       <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:green;"></i>
+            //       <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:teal;"></i>
             //       <div class="alert-text-danger">No Hospital Found!</div>
             //     `;
             //     errorAlert.style.top = "-50px";

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" type="image/x-icon" href="../assets/logo.png" />
     <link rel="stylesheet" href="../custom/styles.css">
+    <link rel="stylesheet" href="../index.css">
 </head>
 <body>
 
@@ -45,22 +46,22 @@
     
 </nav>
 <!-- Nav bar components end -->
- <span class="aeonik d-flex w-100 p-3 align-items-center gap-2 flex-wrap " style="color: teal;font-size: 30px; font-weight: 700;" id="hospital-name">
-         <img src="../assets/ss.webp" alt="banner" class="object-fit-cover banner">   Hydonic Hospital
+ <span id="hospital-name" class="aeonik d-flex w-100 p-3 align-items-center gap-2 flex-wrap " style="color: teal;font-size: 30px; font-weight: 700;">
+         <img src="../assets/ss.webp" alt="banner" class="object-fit-cover banner">   My Hospital
         </span>
 
 <!-- elog editable bar components start -->
 <div class="w-100 max-w-505 p-3">
 <div class="d-flex flex-column p-2 elog manrope">
   <div class="aeonik">Department name:</div>
-<input class="aeonik" style="outline:none; border: none; background: transparent;">
+<input id="name" class="aeonik" style="outline:none; border: none; background: transparent;">
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div class="aeonik">Description:</div>
-<input maxlength="150" class="aeonik" style="outline:none; border: none; background: transparent;">
+<input id="desc" maxlength="150" class="aeonik" style="outline:none; border: none; background: transparent;">
   </div>
 
-<div class="confirm-btn dep formbtn max-w-505 fw-bolder gap-2" style="background: tomato;color: #ffffff;">Create <i class="fa-solid fa-gears"></i></div>
+<div id="create-btn" class="confirm-btn dep formbtn max-w-505 fw-bolder gap-2" style="background: tomato;color: #ffffff;">Create</div>
 </div>
 <!-- elog editable bar components end -->
 
@@ -69,13 +70,90 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="../index.js"></script>
-<script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+  import { getDatabase,ref, get, update, remove,set, child} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+  import { getStorage, ref as sRefe, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
+
+  const firebaseConfig = {
+      apiKey: "AIzaSyD_7UtoovjIRudRWjTzPp20V5h7MnnPJ3w",
+    authDomain: "hr-management-f5217.firebaseapp.com",
+    databaseURL: "https://hr-management-f5217-default-rtdb.firebaseio.com",
+    projectId: "hr-management-f5217",
+    storageBucket: "hr-management-f5217.appspot.com",
+    messagingSenderId: "853865580222",
+    appId: "1:853865580222:web:938148d73ffd6a4e2440ef"
+    };
+    var app = initializeApp(firebaseConfig);
+    var db = getDatabase(); 
+    var sRef = sRefe;
+    const storage = getStorage(app);
+    let hospitalObject;
+    let departments;
+    let cards;
     var currentUser = null;
-      window.onload = function(){
-     currentUser = JSON.parse(localStorage.getItem('user'));
-     console.log(currentUser)
-     document.getElementById("hospital-name").innerHTML=` <img src="../assets/ss.webp" alt="banner" class="object-fit-cover banner">   ${currentUser? currentUser.hospital:"My hospital"}`
-      }
-</script>
+    currentUser = JSON.parse(localStorage.getItem('user'));
+    const name = document.getElementById("name");
+    const desc = document.getElementById("desc");
+    const hospitalnameEl = document.getElementById("hospital-name");
+    const yesbtn = document.querySelector(".yesbtn");
+    const createbtn = document.getElementById("create-btn");
+      async function getHospital(){
+        const hospitalRef = ref(db, "Hospital/"+currentUser.hospital.replace(/[^\w]/g, ""));
+                 await get(hospitalRef).then((snapshot) => {
+                  if(snapshot.val()){
+                   hospitalObject = snapshot.val();
+                   hospitalnameEl.innerHTML=`<img src=${hospitalObject?.img? hospitalObject.img : "../assets/ss.webp"} alt="banner" class="object-fit-cover banner">
+                      ${hospitalObject.hospital}
+                   `;
+                   }else{
+                    console.log("no snapshot")
+                   }})}
+       
+        window.onload = function(){
+          getHospital();
+          yesbtn.addEventListener("click", ()=>{
+            document.getElementById("confirm").style.display="none";
+            if(!name.value||!desc.value){
+          const errorAlert = document.createElement("div");
+                errorAlert.classList.add("alert");
+                errorAlert.innerHTML = `
+                  <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:tomato;"></i>
+                  <div class="alert-text-danger">All field must be filled!</div>
+                `;
+                errorAlert.style.top = "-50px";
+                document.querySelector("body").appendChild(errorAlert);
+      
+                setTimeout(() => {
+                  errorAlert.style.top = "70px";
+                }, 0);
+      
+                setTimeout(() => {
+                  errorAlert.remove();
+                  document.getElementById("create-btn").innerHTML=`Create`;
+                }, 2000);
+              }else{
+                document.getElementById("create-btn").innerHTML=`A moment...`;
+              
+                const updatedHospital = {
+                ...hospitalObject,
+                departments: [...hospitalObject.departments, {
+                name: name.value,
+                desc: desc.value,
+                hospital: hospitalObject.hospital,
+                }],
+                };
+
+                console.log(updatedHospital)
+               
+                 const hospitalRef = ref(db, "Hospital/"+currentUser.hospital.replace(/[^\w]/g, ""));
+                 update(hospitalRef,updatedHospital).then(()=>{
+                         getHospital();
+                         document.getElementById("create-btn").innerHTML=`Created<i class="fa fa-check"></i>`;
+                 })
+                }
+          })
+        }
+  </script>
 </body>
 </html>

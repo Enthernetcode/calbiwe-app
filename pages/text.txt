@@ -1,0 +1,35 @@
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+  import { getDatabase,ref, get, update, remove,set, child} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+  import { getStorage, ref as sRefe, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
+  
+  const firebaseConfig = {
+      apiKey: "AIzaSyD_7UtoovjIRudRWjTzPp20V5h7MnnPJ3w",
+    authDomain: "hr-management-f5217.firebaseapp.com",
+    databaseURL: "https://hr-management-f5217-default-rtdb.firebaseio.com",
+    projectId: "hr-management-f5217",
+    storageBucket: "hr-management-f5217.appspot.com",
+    messagingSenderId: "853865580222",
+    appId: "1:853865580222:web:938148d73ffd6a4e2440ef"
+    };
+    var app = initializeApp(firebaseConfig);
+    var db = getDatabase(); 
+    var sRef = sRefe;
+    const storage = getStorage(app);
+    let hospitalObject;
+    var currentUser = null;
+    currentUser = JSON.parse(localStorage.getItem('user'));
+      async function getHospital(email,address,apass,spass,epass,img){
+        const hospitalRef = ref(db, "Hospital/"+currentUser.hospital.replace(/[^\w]/g, ""));
+                 await get(hospitalRef).then((snapshot) => {
+                  if(snapshot.val()){
+                   hospitalObject = snapshot.val();
+                 
+                 }else{
+                  console.log("hospital not found !")
+                 }})}
+       
+        window.onload = function(){
+          getHospital();
+        }
+  </script>

@@ -24,10 +24,10 @@ $('#confirm, .nobtn').click(
        if (event.target !== this) return;
        $('#confirm').fadeOut();
 });
-$('.yesbtn').click(
-    function() {
-      alert("Done");
-});
+// $('.yesbtn').click(
+//     function() {
+//       alert("Done");
+// });
 
 // DYNAMIC EDIT FORM FUNCTION
 $('#editable').hide();

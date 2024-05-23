@@ -91,11 +91,11 @@
     </div>
 </nav>
 <!-- Nav bar components end -->
- <span class="aeonik d-flex w-100 p-3 align-items-center gap-2 flex-wrap " style="color: teal;font-size: 30px; font-weight: 700;">
-         <img src="../assets/ss.webp" alt="banner" class="object-fit-cover banner">   Hydonic Hospital
+ <span id="hospital-name" class="aeonik d-flex w-100 p-3 align-items-center gap-2 flex-wrap " style="color: teal;font-size: 30px; font-weight: 700;">
+         <img src="../assets/ss.webp" alt="banner" class="object-fit-cover banner">   My Hospital
         </span>
 <!-- users bar components start -->
-<div class="w-100  p-3 d-flex flex-wrap gap-3 ">
+<div id="users" class="w-100  p-3 d-flex flex-wrap gap-3 ">
 <div class="d-flex flex-column gap-2 p-3 log">
   <div class="d-flex align-items-center gap-2 flex-wrap "><i class="fa fa-user-tie"></i>Ahmed Banigo</div>
 <div class="d-flex align-items-center gap-2 flex-wrap "><i class="fa fa-star"></i>Admin</div>
@@ -112,10 +112,63 @@
 <!-- users bar components end -->
 
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="../index.js"></script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+  import { getDatabase,ref, get, update, remove,set, child} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+  import { getStorage, ref as sRefe, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
+
+  const firebaseConfig = {
+      apiKey: "AIzaSyD_7UtoovjIRudRWjTzPp20V5h7MnnPJ3w",
+    authDomain: "hr-management-f5217.firebaseapp.com",
+    databaseURL: "https://hr-management-f5217-default-rtdb.firebaseio.com",
+    projectId: "hr-management-f5217",
+    storageBucket: "hr-management-f5217.appspot.com",
+    messagingSenderId: "853865580222",
+    appId: "1:853865580222:web:938148d73ffd6a4e2440ef"
+    };
+    var app = initializeApp(firebaseConfig);
+    var db = getDatabase(); 
+    var sRef = sRefe;
+    const storage = getStorage(app);
+    let hospitalObject;
+    let users;
+    let cards;
+    var currentUser = null;
+    const usersEl = document.getElementById("users");
+    currentUser = JSON.parse(localStorage.getItem('user'));
+    const hospitalnameEl = document.getElementById("hospital-name");
+      async function getHospital(){
+        const hospitalRef = ref(db, "Hospital/"+currentUser.hospital.replace(/[^\w]/g, ""));
+                 await get(hospitalRef).then((snapshot) => {
+                  if(snapshot.val()){
+                   hospitalObject = snapshot.val();
+                   hospitalnameEl.innerHTML=`<img src=${hospitalObject?.img? hospitalObject.img : "../assets/ss.webp"} alt="banner" class="object-fit-cover banner">
+                      ${hospitalObject.hospital}
+                   `;
+                   users = hospitalObject.users;
+                   console.log(users)
+                   cards="";
+                   users.forEach(element => {
+                    const usercard = `<div class="d-flex flex-column gap-2 p-3 log">
+  <div class="d-flex align-items-center gap-2 flex-wrap "><i class="fa fa-user-tie"></i>${element.name}</div>
+<div class="d-flex align-items-center gap-2 flex-wrap "><i class="fa fa-star"></i>${element.title}</div>
+<div class="d-flex align-items-center gap-2 flex-wrap w-100 justify-content-end align-items-center" style="font-size:11px;color: #a1a2ab; font-weight:900"><i class="fa fa-clock"></i>${new Date(element.date).toDateString()}</div>
+  </div>`;
+   cards += usercard;
+                   });
+                   usersEl.innerHTML=cards
+                 }else{
+                  usersEl.innerHTML=`<div class="d-flex w-100 p-3 border justify-content-center align-items-center" style="border-radius: 7px;">No user found!</div>`;
+                 }})}
+       
+        window.onload = function(){
+          usersEl.innerHTML="";
+          getHospital();
+        }
+  </script>
 </body>
 </html>
