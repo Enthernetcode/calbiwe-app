@@ -18,7 +18,7 @@
             
             <div class="auth-logo-cont">
                 <div class="auth-img"> <img src="../assets/logo.gif" alt="logo" style="width: 50px;height: 50px;"></div>
-                    <span class="auth-logo-text" style="color: tomato;">
+                    <span class="auth-logo-text" style="color: red;">
                         Calbiwe
                     </span>
             </div>
@@ -28,13 +28,13 @@
             <div class="auth-logo-cont-form">
                
                 <div class="auth-img-form"> <img src="../assets/logo.gif" alt="logo"></div>
-                    <span class="auth-logo-text-form" style="color: tomato;">
+                    <span class="auth-logo-text-form" style="color: red;">
                         Calbiwe
                     </span>
             </div>
             <div class="d-flex flex-column gap-1 w-100">
                 <div class="auth-title" style="color: rgba(255, 99, 71, 0.904); font-size: 14px;">Create your hospital pass-codes</div>
-                <div class="auth-title" style="color: teal;">Sign up</div>
+                <div class="auth-title" style="color: green;">Sign up</div>
             </div>
             
             <div class="auth-form  ">
@@ -53,7 +53,7 @@
                 <button id="signup">Sign Up</button>
             </div>
             <div class="auth-signin-sub">
-                <div class="auth-signin-sub-child" style="color: teal;">Already registered hospital? <a href="../index.html">Sign in</a></div>
+                <div class="auth-signin-sub-child" style="color: green;">Already registered hospital? <a href="../index.html">Sign in</a></div>
             </div>
         </div>
     </main>
@@ -106,21 +106,21 @@ const firebaseConfig = {
             if (apassword === "" || apassword.length < minPasswordLength || 
                 (apassword === spassword) || (apassword === epassword)) {
               apasswordLabel.textContent = "Password invalid*";
-              apasswordLabel.style.color = "tomato";
+              apasswordLabel.style.color = "red";
               isValid = false;
             }
       
             if (spassword === "" || spassword.length < minPasswordLength || 
                 (spassword === apassword) || (spassword === epassword)) {
               spasswordLabel.textContent = "Password invalid*";
-              spasswordLabel.style.color = "tomato";
+              spasswordLabel.style.color = "red";
               isValid = false;
             }
       
             if (epassword === "" || epassword.length < minPasswordLength || 
                 (epassword === apassword) || (epassword === spassword)) {
               epasswordLabel.textContent = "Password invalid*";
-              epasswordLabel.style.color = "tomato";
+              epasswordLabel.style.color = "red";
               isValid = false;
             }
       
@@ -150,7 +150,7 @@ const firebaseConfig = {
               const successAlert = document.createElement("div");
                 successAlert.classList.add("alert");
                 successAlert.innerHTML = `
-                  <i class="fa fa-check d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:teal;"></i>
+                  <i class="fa fa-check d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:green;"></i>
                   <div class="alert-text">Registered Successfully</div>
                 `;
                 successAlert.style.top = "-50px";
@@ -181,7 +181,7 @@ const firebaseConfig = {
                 const errorAlert = document.createElement("div");
                 errorAlert.classList.add("alert");
                 errorAlert.innerHTML = `
-                  <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:teal;"></i>
+                  <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:green;"></i>
                   <div class="alert-text-danger">Error occured!</div>
                 `;
                 errorAlert.style.top = "-50px";
@@ -206,7 +206,7 @@ const firebaseConfig = {
             //     const successAlert = document.createElement("div");
             //     successAlert.classList.add("alert");
             //     successAlert.innerHTML = `
-            //       <i class="fa fa-check d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:teal;"></i>
+            //       <i class="fa fa-check d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:green;"></i>
             //       <div class="alert-text">Registered Successfully</div>
             //     `;
             //     successAlert.style.top = "-50px";
@@ -225,7 +225,7 @@ const firebaseConfig = {
             //     const errorAlert = document.createElement("div");
             //     errorAlert.classList.add("alert");
             //     errorAlert.innerHTML = `
-            //       <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:teal;"></i>
+            //       <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:green;"></i>
             //       <div class="alert-text-danger">No Hospital Found!</div>
             //     `;
             //     errorAlert.style.top = "-50px";
