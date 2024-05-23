@@ -98,13 +98,13 @@
 </div>
 <!-- Card bar components start -->
 <div id="departments" class="w-100 p-3 d-flex flex-wrap gap-3 ">
-     <a href="dep.html" class="dep">Emergency Department (ED)</a>
-     <a href="dep.html" class="dep">Intensive Care Unit (ICU)</a>
-     <a href="dep.html" class="dep">Pediatrics Department</a>
-     <a href="dep.html" class="dep">Obstetrics and Gynecology Department (OB/GYN)</a>
-     <a href="dep.html" class="dep">Cardiology Department</a>
-     <a href="dep.html" class="dep">Radiology Department</a>
-     <a href="dep.html" class="dep">Laboratory Department</a>
+     <div class="dep">Loading...</div>
+     <div class="dep">Loading...</div>
+     <div class="dep">Loading...</div>
+     <div class="dep">Loading...</div>
+     <div class="dep">Loading...</div>
+     <div class="dep">Loading...</div>
+     <!-- <a href="dep.html" class="dep">Laboratory Department</a>
      <a href="dep.html" class="dep">Surgical Department</a>
      <a href="dep.html" class="dep">Orthopedics Department</a>
      <a href="dep.html" class="dep">Oncology Department</a>
@@ -117,7 +117,7 @@
      <a href="dep.html" class="dep">Infectious Diseases Department</a>
      <a href="dep.html" class="dep">Nephrology Department</a>
      <a href="dep.html" class="dep">ENT (Ear, Nose, and Throat) Department</a>
-     <a href="dep.html" class="dep">Anesthesiology Department</a>
+     <a href="dep.html" class="dep">Anesthesiology Department</a> -->
 </div>
 <!-- Card bar components end -->
 
@@ -163,16 +163,27 @@
                      departments = hospitalObject.departments;
                      cards="";
                      departments.forEach(element => {
-                      const depcard = `<a  href="dep.html" class="dep">${element.name}</a>`;
-     cards += depcard;
+                      const depcard = `<div class="dep">${element.name}</div>`;
+                      cards += depcard;
                      });
-                     departmentEl.innerHTML=cards
+                     departmentEl.innerHTML=cards;
+
+  // Check if the clicked element is a `.dep` child element
+  departmentEl.addEventListener('click', function(event) {
+  if (event.target.classList.contains('dep')) {
+    const clickedDep = event.target;
+    const dataItemString = clickedDep.innerText;
+    localStorage.setItem("departmentname",dataItemString);
+
+    // Redirect to dep.html
+    window.location.href = 'dep.html';
+  }
+});
                    }else{
                     departmentEl.innerHTML=`<div class="d-flex w-100 p-3 border justify-content-center align-items-center" style="border-radius: 7px;">No departments found!</div>`;
                    }})}
          
           window.onload = function(){
-            departmentEl.innerHTML="";
             getHospital();
           }
     </script>

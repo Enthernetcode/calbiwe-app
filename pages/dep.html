@@ -31,6 +31,7 @@
            </div>
         </div>
 </div>
+    
 <!-- Confirm component ends -->
 
     <!-- Side bar components starts  -->
@@ -79,8 +80,8 @@
     
     <div class="d-flex align-items-center justify-content-between flex-wrap  gap-2">
 <div class="d-flex flex-wrap  align-items-center gap-2">
-            <span id="department-name" class="aeonik " style="color: teal;font-size: 16px; font-weight: 700;">
-                Departments > <span style="color: #a2a1ab;font-weight: 500;">Emergency Department (ED)</span>
+            <span class="aeonik " style="color: teal;font-size: 16px; font-weight: 700;">
+                Departments > <span id="department-name" style="color: #a2a1ab;font-weight: 500;">Emergency Department (ED)</span>
             </span>
     </div>
         <div class="d-flex">
@@ -91,18 +92,18 @@
 </nav>
 <!-- Nav bar components end -->
   <span id="hospital-name" class="aeonik d-flex w-100 p-3 align-items-center gap-2 flex-wrap " style="color: teal;font-size: 30px; font-weight: 700;">
-         <img src="../assets/ss.webp" alt="banner" class="object-fit-cover banner">   Hydonic Hospital
+         <img src="../assets/ss.webp" alt="banner" class="object-fit-cover banner">   My Hospital
         </span>
 <div id="department-desc" class="manrope d-flex w-100 p-3 max-w-700">The emergency department (ED) in a hospital is a specialized unit designed to provide immediate medical care to patients with acute illnesses or injuries.</div>
 <div class="w-100 p-3 d-flex flex-wrap gap-3 ">
-<div class="confirm-btn dep depbtn fw-bolder gap-2" style="background: tomato;color: #ffffff;">Delete department <i class="fa fa-trash"></i></div>
-<a href="postequ.html" class="dep depbtn fw-bolder" style="background: teal;color: #ffffff;">Add New Equipment +</a>
+<div id="delbtn" class="confirm-btn dep depbtn fw-bolder gap-2" style="background: tomato;color: #ffffff;">Delete department <i class="fa fa-trash"></i></div>
+<div id="adddepbtn" class="dep depbtn fw-bolder" style="background: teal;color: #ffffff;">Add New Equipment +</div>
 </div>
 <!-- Card bar components start -->
-<div class="w-100 p-3 d-flex flex-wrap gap-3 ">
-     <a href="equ.html" class="equ">Emergency room</a>
-     <a href="equ.html" class="equ">Crash cart</a>
-     <a href="equ.html" class="equ">Defibrillator</a>
+<div id="equipments" class="w-100 p-3 d-flex flex-wrap gap-3 ">
+     <div class="equ">Loading...</div>
+     <div class="equ">Loading...</div>
+     <div class="equ">Loading...</div>
     
 </div>
 <!-- Card bar components end -->
@@ -137,8 +138,13 @@
       var currentUser = null;
       const departmentname = document.getElementById("department-name");
       const departmentdesc = document.getElementById("department-desc");
+      const equipmentsEl = document.getElementById("equipments");
+      const addbtn = document.getElementById("adddepbtn");
       currentUser = JSON.parse(localStorage.getItem('user'));
+      const depname = localStorage.getItem("departmentname");
       const hospitalnameEl = document.getElementById("hospital-name");
+      let card;
+      departmentname.innerText=depname;
         async function getHospital(){
           const hospitalRef = ref(db, "Hospital/"+currentUser.hospital.replace(/[^\w]/g, ""));
                    await get(hospitalRef).then((snapshot) => {
@@ -147,12 +153,61 @@
                         hospitalnameEl.innerHTML=`<img src=${hospitalObject?.img? hospitalObject.img : "../assets/ss.webp"} alt="banner" class="object-fit-cover banner">
                         ${hospitalObject.hospital}
                      `;
+                    const filteredDep = hospitalObject.departments.filter(d=> d.name === depname);
+                    console.log(filteredDep)
+                     departmentdesc.innerText=filteredDep[0].desc
+                     if(filteredDep[0]?.equipments){
+                        cards="";
+                        filteredDep[0].equipments.forEach((e)=>{
+                            const equcard = `<div class="equ">${e.name}</div>`;
+                      cards += equcard;
+                        })
+                        equipmentsEl.innerHTML=cards;
+                          // Check if the clicked element is a `.dep` child element
+  equipmentsEl.addEventListener('click', function(event) {
+  if (event.target.classList.contains('equ')) {
+    const clickedDep = event.target;
+    const dataItemString = clickedDep.innerText;
+    localStorage.setItem("equipmentname",dataItemString);
+
+    // Redirect to dep.html
+    window.location.href = 'equ.html';
+  }
+});
+    
+                     }else{
+                        equipmentsEl.innerHTML=`<div class="w-100 p-3 d-flex border" style="border-radius:7px;">No equipments yet</div>`;
+                     }
                    }else{
                     console.log("no snapshot")
                 }})}
+
+                function deleteDepartment(){
+                    document.getElementById("delbtn").innerText="A moment..."
+                    document.getElementById("confirm").style.display="none";
+                    const index = hospitalObject.departments.findIndex(d => d.name === depname);
+                    console.log(index)
+                    if (index === -1) {
+                     console.error("Department not found:", depname);
+                      return; // Exit function if not found
+                      }
+                      const removedDepartment = hospitalObject.departments.splice(index, 1)[0];
+                      const updatedHospitalObject = { ...hospitalObject };
+                      updatedHospitalObject.departments = hospitalObject.departments;
+                      const hospitalRef = ref(db, "Hospital/"+currentUser.hospital.replace(/[^\w]/g, ""));
+                 update(hospitalRef,updatedHospitalObject).then(()=>{
+                            window.location.href="index.html";
+                 })
+                }
          
           window.onload = function(){
             getHospital();
+            document.querySelector(".yesbtn").addEventListener("click", deleteDepartment)
+            const addbtn = document.getElementById("adddepbtn");
+            addbtn.addEventListener("click",()=>{
+                localStorage.setItem("departmentnameforadding",depname);
+                window.location.href="postequ.html"
+            })
           }
     </script>
 </body>
