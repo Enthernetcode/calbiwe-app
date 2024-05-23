@@ -18,7 +18,7 @@
         <div class="auth-cont-left">
             <div class="auth-logo-cont">
                 <div class="auth-img"> <img src="./assets/logo.gif" alt="logo" style="width: 50px;height: 50px;"></div>
-                    <span class="auth-logo-text" style="color: green;">
+                    <span class="auth-logo-text" style="color: red;">
                         Calbiwe
                     </span>
             </div>
@@ -30,7 +30,7 @@
             <div class="auth-logo-cont-form">
                
                 <div class="auth-img-form"> <img src="./assets/logo.gif" alt="logo"></div>
-                    <span class="auth-logo-text-form" style="color: green;">
+                    <span class="auth-logo-text-form" style="color: red;">
                         Calbiwe
                     </span>
             </div>
@@ -51,11 +51,11 @@
                     <input type="password" class="form-control" id="password" placeholder="password">
                     <label id="passlabel" for="password">Pass-code</label>
                 </div>
-                <button id="signin" style="background-color:green;">Sign In</button>
+                <button id="signin">Sign In</button>
             </div>
             <div class="auth-signin-sub">
-                <div class="auth-signin-sub-child" style="color: teal;">Admin? <a href="./auth/reset.html">Reset Pass-code</a></div>
-                <div class="auth-signin-sub-child" style="color: teal;">Create? <a href="./auth/signup.html">Sign up</a></div>
+                <div class="auth-signin-sub-child" style="color: green;">Admin? <a href="./auth/reset.html">Reset Pass-code</a></div>
+                <div class="auth-signin-sub-child" style="color: green;">Create? <a href="./auth/signup.html">Sign up</a></div>
             </div>
         </div>
     </main>
@@ -65,91 +65,108 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
    
     
-    <script>
-        $(document).ready(function () {
-            $("#signin").click(function () {
-                
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+        import { getDatabase,ref, get, update, remove,set, child} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
 
-                var name = $("#name").val();
-                var hospital = $("#hospital").val();
-                var password = $("#password").val();
-                var users = JSON.parse(localStorage.getItem("users")) || [];
+        const firebaseConfig = {
+    apiKey: "AIzaSyD_7UtoovjIRudRWjTzPp20V5h7MnnPJ3w",
+  authDomain: "hr-management-f5217.firebaseapp.com",
+  databaseURL: "https://hr-management-f5217-default-rtdb.firebaseio.com",
+  projectId: "hr-management-f5217",
+  storageBucket: "hr-management-f5217.appspot.com",
+  messagingSenderId: "853865580222",
+  appId: "1:853865580222:web:938148d73ffd6a4e2440ef"
+  };
 
+  var app = initializeApp(firebaseConfig);
+  var db = getDatabase(); 
+        document.addEventListener("DOMContentLoaded", function () {
+          const signinButton = document.getElementById("signin");
+      
+          signinButton.addEventListener("click", function () {
+            let noerr = true;
+            // Get user input
+            const name = document.getElementById("name").value;
+            const hospital = document.getElementById("hospital").value;
+            const password = document.getElementById("password").value;
+      
+            // Validate inputs
+            let isValid = true;
+            const nameLabel = document.getElementById("namelabel");
+            const hospitalLabel = document.getElementById("hospitalabel");
+            const passwordLabel = document.getElementById("passlabel");
+      
+            nameLabel.textContent = "Fullname";
+            hospitalLabel.textContent = "Hospital name";
+            passwordLabel.textContent = "Password";
+      
+            if (name === "") {
+              nameLabel.textContent = "Your fullname is required*";
+              nameLabel.style.color = "red";
+              isValid = false;
+            }
+      
+            if (hospital === "") {
+              hospitalLabel.textContent = "Hospital name is required*";
+              hospitalLabel.style.color = "red";
+              isValid = false;
+            }
+      
+            if (password === "" || password.length < 6) {
+              passwordLabel.textContent = "Password must be more than 6 characters*";
+              passwordLabel.style.color = "red";
+              isValid = false;
+            }
 
-                // Validate inputs
-                var isValid = true;
-                $("#namelabel").text("Fullname");
-                $("#hospitalabel").text("Hospital name");
-                $("#passlabel").text("Password");
             
-                if (name === "") {
-                    $("#namelabel").text("Your fullname is required*");
-                    $("#namelabel").css("color","red");
-                    isValid = false;
-                }
+      
+            // If validation passes, simulate loading and redirect
+            if (isValid) {
+                const hospitalRef = ref(db, "hospital/"+hospital.replace(/[^\w]/g, ""));
+                get(hospitalRef).then((snapshot) => {
 
-                if (hospital === "") {
-                    $("#hospitalabel").text("Hospital name is required*");
-                    $("#hospitalabel").css("color","red");
-                    isValid = false;
-                }
-
-                if (password === "" || password.length < 6) {
-                    $("#passlabel").text("Password must be more than 6 characters*");
-                    $("#passlabel").css("color","red");
-                    isValid = false;
-                }
-
-                // If validation passes, log user credentials to the console
-                if (isValid) {
-
-                      const newParagraph = $(`<div class="loader-cont gap-4 ">
-        <div class="auth-img "> <img src="./assets/logo.png" alt="logo" style="width: 150px;height: 150px;"></div>
-        <div class="loader-title">Loading up your app..</div>
-        <div class="loader-text">This won’t take long</div>
-    </div>`);
-   
-                    $("#log-body").append(newParagraph)
-                    setTimeout(function(){
-      window.location.href="./pages/index.html"
-      newParagraph.remove();
-    }, 2000);
-                       } else {
-                        
-                        const newParag = $(`<div class="alert">
-        <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:tomato;"></i>
-        <div class="alert-text-danger">Invalid password!</div>
-    </div>`);
-    newParag.css("top", "-50px");
-                    $("#log-body").append(newParag);
-                    setTimeout(function () {
-                newParag.css("top", "70px");
-            }, 0);
-                    setTimeout(function(){
-      newParag.remove();
-    }, 2000);
-                      }
-            });
+                }).catch((err)=>{
+                      console.log(err)
+                })
+            //   const loaderContainer = document.createElement("div");
+            //   loaderContainer.classList.add("loader-cont", "gap-4");
+            //   loaderContainer.innerHTML = `
+            //     <div class="auth-img">
+            //       <img src="./assets/logo.png" alt="logo" style="width: 150px;height: 150px;">
+            //     </div>
+            //     <div class="loader-title">Loading up your app..</div>
+            //     <div class="loader-text">This won’t take long</div>
+            //   `;
+            //   document.getElementById("log-body").appendChild(loaderContainer);
+      
+            //   setTimeout(() => {
+            //     window.location.href = "./pages/index.html";
+            //     loaderContainer.remove();
+            //   }, 2000);
+      
+            // } else {
+            //   // Display error message
+            //   const errorAlert = document.createElement("div");
+            //   errorAlert.classList.add("alert");
+            //   errorAlert.innerHTML = `
+            //     <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:red;"></i>
+            //     <div class="alert-text-danger">Invalid password!</div>
+            //   `;
+            //   errorAlert.style.top = "-50px";
+            //   document.getElementById("log-body").appendChild(errorAlert);
+      
+            //   setTimeout(() => {
+            //     errorAlert.style.top = "70px";
+            //   }, 0);
+      
+            //   setTimeout(() => {
+            //     errorAlert.remove();
+            //   }, 2000);
+             }
+          });
         });
-    </script>
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-    import { getDatabase, ref, update, remove} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
-    var adm, bal, use, btn, btnDel;
-    adm = document.getElementById('adm');
-    bal = document.getElementById('bal');
-    btn = document.getElementById('btn');
-    btnDel = document.getElementById('btn-del');
-    use = document.getElementById('use');
-    // Initialize Firebase
-    const firebaseConfig = {
-          apiKey: "AIzaSyACQcdYNFIvnnahAUWQQJhioJYMYrrW_VE",
-          authDomain: "insure-8082d.firebaseapp.com",
-          databaseURL: "https://insure-8082d-default-rtdb.firebaseio.com",
-          projectId: "insure-8082d",
-          storageBucket: "insure-8082d.appspot.com",
-          messagingSenderId: "524758809898",
-          appId: "1:524758809898:web:f52528d42244829a917253"
-    };
+      </script>
+      
 </body>
 </html>

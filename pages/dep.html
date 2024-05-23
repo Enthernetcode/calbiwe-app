@@ -16,7 +16,7 @@
 
         <!-- Loader -->
 <div id="loader" class="position-fixed w-100 h-100 bg-light" style="z-index: 11111111111;">
-    <div class="spinner-border" style="color: green;" role="status">
+    <div class="spinner-border" style="color: teal;" role="status">
       <span class="sr-only">Loading...</span>
     </div>
   </div>
@@ -37,37 +37,37 @@
     <div class="side-left-hover-container">
 <div class="side-left-cont">
     <div class="side-left-child-cont">
-        <i class="fa fa-arrow-left gg" style="color:green;font-size: 24px;"></i>
-        <i class="fa fa-border-none" style="color: red; font-size: 24px;"></i>
-        <i class="fa fa-circle-user" style="color:green;font-size: 24px;"></i>
-        <i class="fa fa-users" style="color:green;font-size: 24px;"></i>
+        <i class="fa fa-arrow-left gg" style="color:teal;font-size: 24px;"></i>
+        <i class="fa fa-border-none" style="color: tomato; font-size: 24px;"></i>
+        <i class="fa fa-circle-user" style="color:teal;font-size: 24px;"></i>
+        <i class="fa fa-users" style="color:teal;font-size: 24px;"></i>
     </div>
     <div class="side-left-child-cont">
-        <i class="fa fa-door-open" style="color:green;font-size: 24px;"></i>
+        <i class="fa fa-door-open" style="color:teal;font-size: 24px;"></i>
     </div>
 </div>
 
 <div class="side-left-cont-slide">
     <div class="side-left-child-cont-slide">     
        <a href="index.html"  id="homeLink" class="side-left-link-cont">
-            <i class="fa fa-arrow-left" style="color:green;font-size: 24px;"></i>
-            <div class="side-left-link-text" id="displayArea">Go back</div>
+            <i class="fa fa-arrow-left" style="color:teal;font-size: 24px;"></i>
+            <div class="side-left-link-text">Go back</div>
         </a>
         <div id="profileLink" class="side-left-link-cont active-side-left-link">
-            <i class="fa fa-border-none" style="color: red; font-size: 24px;"></i>
+            <i class="fa fa-border-none" style="color: tomato; font-size: 24px;"></i>
             <div class="side-left-link-text" style="color: #ff6347ce;">Equipments</div>
         </div>
         <a href="admin.html" id="homeLink" class="side-left-link-cont">
-            <i class="fa fa-circle-user" style="color:green;font-size: 24px;"></i>
+            <i class="fa fa-circle-user" style="color:teal;font-size: 24px;"></i>
             <div class="side-left-link-text">Admin settings</div>
         </a>
         <a href="users.html" id="youtubeLink" class="side-left-link-cont">
-            <i class="fa fa-users" style="color:green;font-size: 24px;"></i>
+            <i class="fa fa-users" style="color:teal;font-size: 24px;"></i>
             <div class="side-left-link-text">Community</div>
         </a>        
     </div>
     <div id="logoutLink" class="confirm-btn side-left-child-cont-slide ii">
-        <i class="fa fa-door-open" style="color:green;font-size: 24px;"></i>
+        <i class="fa fa-door-open" style="color:teal;font-size: 24px;"></i>
         <div class="side-left-link-text">Logout</div>
     </div>
 </div>
@@ -79,7 +79,7 @@
     
     <div class="d-flex align-items-center justify-content-between flex-wrap  gap-2">
 <div class="d-flex flex-wrap  align-items-center gap-2">
-            <span class="aeonik " style="color: green;font-size: 16px; font-weight: 700;">
+            <span class="aeonik " style="color: teal;font-size: 16px; font-weight: 700;">
                 Departments > <span style="color: #a2a1ab;font-weight: 500;">Emergency Department (ED)</span>
             </span>
     </div>
@@ -90,18 +90,18 @@
     </div>
 </nav>
 <!-- Nav bar components end -->
-  <span class="aeonik d-flex w-100 p-3 align-items-center gap-2 flex-wrap " style="color: green;font-size: 30px; font-weight: 700;">
+  <span class="aeonik d-flex w-100 p-3 align-items-center gap-2 flex-wrap " style="color: teal;font-size: 30px; font-weight: 700;" id="hospital-name">
          <img src="../assets/ss.webp" alt="banner" class="object-fit-cover banner">   Hydonic Hospital
         </span>
 <div class="manrope d-flex w-100 p-3 max-w-700">The emergency department (ED) in a hospital is a specialized unit designed to provide immediate medical care to patients with acute illnesses or injuries.</div>
 <div class="w-100 p-3 d-flex flex-wrap gap-3 ">
-<div class="confirm-btn dep depbtn fw-bolder gap-2" style="background: red;color: #ffffff;">Delete department <i class="fa fa-trash"></i></div>
-<a href="postequ.html" class="dep depbtn fw-bolder" style="background: green;color: #ffffff;">Add New Equipment +</a>
+<div class="confirm-btn dep depbtn fw-bolder gap-2" style="background: tomato;color: #ffffff;">Delete department <i class="fa fa-trash"></i></div>
+<a href="#postequ.html" class="dep depbtn fw-bolder" style="background: teal;color: #ffffff;">Add New Equipment +</a>
 </div>
 <!-- Card bar components start -->
 <div class="w-100 p-3 d-flex flex-wrap gap-3 ">
-     <a href="#equ.html" class="equ">Equipment 1</a>
-     <a href="#equ.html" class="equ">Equipment 2</a>
+     <a href="$equ.html" class="equ">Equipment 1</a>
+     <a href="$equ.html" class="equ">Equipment 2</a>
      <a href="#equ.html" class="equ">Equipment 3</a>
     
 </div>
@@ -114,12 +114,12 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="../index.js"></script>
 <script>
-    var storedInput = localStorage.getItem("hospital");
-    if (storedInput) {
-      document.getElementById("displayArea").innerText = "User Input: " + storedInput;
-    } else {
-      document.getElementById("displayArea").innerText = "No data stored.";
-    }
-  </script>
+    var currentUser = null;
+      window.onload = function(){
+     currentUser = JSON.parse(localStorage.getItem('user'));
+     console.log(currentUser)
+     document.getElementById("hospital-name").innerHTML=` <img src="../assets/ss.webp" alt="banner" class="object-fit-cover banner">   ${currentUser? currentUser.hospital:"My hospital"}`
+      }
+</script>
 </body>
 </html>
