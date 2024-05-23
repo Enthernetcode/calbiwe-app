@@ -18,7 +18,7 @@
         <div class="auth-cont-left">
             <div class="auth-logo-cont">
                 <div class="auth-img"> <img src="./assets/logo.gif" alt="logo" style="width: 50px;height: 50px;"></div>
-                    <span class="auth-logo-text" style="color: tomato;">
+                    <span class="auth-logo-text" style="color: red;">
                         Calbiwe
                     </span>
             </div>
@@ -30,7 +30,7 @@
             <div class="auth-logo-cont-form">
                
                 <div class="auth-img-form"> <img src="./assets/logo.gif" alt="logo"></div>
-                    <span class="auth-logo-text-form" style="color: tomato;">
+                    <span class="auth-logo-text-form" style="color: red;">
                         Calbiwe
                     </span>
             </div>
@@ -103,19 +103,19 @@
       
             if (name === "") {
               nameLabel.textContent = "Your fullname is required*";
-              nameLabel.style.color = "tomato";
+              nameLabel.style.color = "red";
               isValid = false;
             }
       
             if (hospital === "") {
               hospitalLabel.textContent = "Hospital name is required*";
-              hospitalLabel.style.color = "tomato";
+              hospitalLabel.style.color = "red";
               isValid = false;
             }
       
             if (password === "" || password.length < 6) {
               passwordLabel.textContent = "Password must be more than 6 characters*";
-              passwordLabel.style.color = "tomato";
+              passwordLabel.style.color = "red";
               isValid = false;
             }
 
@@ -141,7 +141,7 @@
                         const errorAlert = document.createElement("div");
                 errorAlert.classList.add("alert");
                 errorAlert.innerHTML = `
-                  <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:tomato;"></i>
+                  <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:red;"></i>
                   <div class="alert-text-danger">Incorrect hospital password!</div>
                 `;
                 errorAlert.style.top = "-50px";
@@ -202,7 +202,7 @@
                     const errorAlert = document.createElement("div");
                 errorAlert.classList.add("alert");
                 errorAlert.innerHTML = `
-                  <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:tomato;"></i>
+                  <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:red;"></i>
                   <div class="alert-text-danger">No hospital found!</div>
                 `;
                 errorAlert.style.top = "-50px";
@@ -242,7 +242,7 @@
             //   const errorAlert = document.createElement("div");
             //   errorAlert.classList.add("alert");
             //   errorAlert.innerHTML = `
-            //     <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:tomato;"></i>
+            //     <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:red;"></i>
             //     <div class="alert-text-danger">Invalid password!</div>
             //   `;
             //   errorAlert.style.top = "-50px";
