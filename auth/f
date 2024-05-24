@@ -1,0 +1,44 @@
+{
+                    name:"Intensive care unit (ICU)", "Intensive care unit", "Neonatal intensive care unit", "Radiology department", "Laboratory", "General ward", "Operating room /Theatre", "ENT department",
+                    hospital: hospital,
+                    desc: "The emergency department (ED) in a hospital is a specialized unit designed to provide immediate  medical care to patients with acute illnesses or injuries.",
+                     equipments:[
+                      {
+                        name: "Defibrillator",
+                        img: `https://www.gimaitaly.com/it/assets/altreimmagini/55514.jpg`,
+                        department: "Intensive care unit (ICU)",
+                        desc: "A defibrillator is a medical device used to deliver an electric shock to the heart in order to restore normal heart rhythm during sudden cardiac arrest.",
+                         equiplog: {
+                          condition: "Functional",
+                          type: "Automated",
+                          serialno: "DEF123456789",
+                          manufacturer: "Meditech Solutions Inc.",
+                          modelno: "DFR-2000",
+                          omanufacturer: "Meditech Innovations Ltd.",
+                          warranty: "Expires on 31/12/2025",
+                          cost: 1500000.00,
+                          rif: "Medium",
+                          location: "Emergency Room",
+                          status: "Available",
+                          supplier: "Lifeline Medical Supplies Ltd.",
+                          purchorder: "PO-123456",
+                          purchcost: 1800000.00,
+                          eac: 2000000.00,
+                          remark: "Device serviced annually; Next maintenance due in July 2024",
+                         },
+                         mainlogs:[
+                          {
+                              id: "1",
+                              equipment: "Defibrillator",
+                              img: `https://www.gimaitaly.com/it/assets/altreimmagini/55514.jpg`,
+                              problem: "Device fails to power on intermittently",
+                              engr: "Reniel Chika",
+                              condition: "On repair",
+                              status: "Manual",
+                              tobtype: "Routine maintenance",
+                              dmd: "21-12-24",
+                          }
+                         ]
+                      }
+                     ]
+                  }
