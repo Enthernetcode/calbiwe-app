@@ -7,7 +7,7 @@
       apiKey: "AIzaSyD_7UtoovjIRudRWjTzPp20V5h7MnnPJ3w",
     authDomain: "hr-management-f5217.firebaseapp.com",
     databaseURL: "https://hr-management-f5217-default-rtdb.firebaseio.com",
-    projectId: "hr-management-f5217",
+    projectId: "hr-management-f5217", 
     storageBucket: "hr-management-f5217.appspot.com",
     messagingSenderId: "853865580222",
     appId: "1:853865580222:web:938148d73ffd6a4e2440ef"
@@ -33,3 +33,77 @@
           getHospital();
         }
   </script>
+
+
+
+
+  function generateRandomId() {
+  // Create a string of random characters (alphanumeric)
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let id = "";
+  for (let i = 0; i < 8; i++) {
+    id += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return id;
+}
+
+
+
+
+
+async function updateEquipmentLog(equipmentName, departmentName, updatedLogData) {
+  try {
+    // Fetch the hospital object
+    const hospitalRef = ref(db, "Hospital/" + currentUser.hospital.replace(/[^\w]/g, ""));
+    const hospitalSnapshot = await get(hospitalRef);
+
+    if (!hospitalSnapshot.exists) {
+      console.error("Hospital document not found.");
+      return; // Exit if hospital doesn't exist
+    }
+
+    const hospitalObject = hospitalSnapshot.val();
+
+    // Find the department and equipment to update
+    const departmentIndex = hospitalObject.departments.findIndex(d => d.name === departmentName);
+    if (departmentIndex === -1) {
+      console.error("Department not found:", departmentName);
+      return; // Exit if department not found
+    }
+
+    const selectedEquipmentIndex = hospitalObject.departments[departmentIndex].equipments.findIndex(e => e.name === equipmentName);
+    if (selectedEquipmentIndex === -1) {
+      console.error("Equipment not found:", equipmentName);
+      return; // Exit if equipment not found
+    }
+
+    // Check for existing equipmentLog object
+    let equipmentLog = hospitalObject.departments[departmentIndex].equipments[selectedEquipmentIndex].equipmentLog;
+    if (!equipmentLog) {
+      // Create a new equipmentLog object if it doesn't exist
+      equipmentLog = {}; // Initialize an empty object
+    }
+
+    // Update equipmentLog properties (merge with existing)
+    equipmentLog = { ...equipmentLog, ...updatedLogData };
+
+    // Create copies for updates (optional, but recommended for immutability)
+    const updatedHospitalObject = { ...hospitalObject };
+    const updatedDepartment = { ...updatedHospitalObject.departments[departmentIndex] };
+    const updatedEquipment = { ...updatedDepartment.equipments[selectedEquipmentIndex] };
+
+    // Update the equipmentLog property within the equipment object
+    updatedEquipment.equipmentLog = equipmentLog;
+    updatedDepartment.equipments[selectedEquipmentIndex] = updatedEquipment;
+    updatedHospitalObject.departments[departmentIndex] = updatedDepartment;
+
+    // Update the Firestore document with the modified hospital object
+    await update(hospitalRef, updatedHospitalObject);
+
+    console.log("Equipment log updated successfully!");
+
+    // Update UI or perform other actions (optional)
+  } catch (error) {
+    console.error("Error updating equipment log:", error);
+  }
+}

@@ -5,7 +5,7 @@
 }
 
 html{
-    scrollbar-color: tomato ;
+    scrollbar-color: red ;
     scrollbar-width: thin;
 }
 
@@ -24,13 +24,13 @@ max-width: 1600px;
   }
   
 ::-webkit-scrollbar-thumb {
-    background-color: tomato;
+    background-color: red;
     border-radius: 6px;
   
   }
   
 ::-webkit-scrollbar-thumb:hover {
-    background-color: tomato;
+    background-color: red;
   }
   
 
@@ -258,7 +258,7 @@ width: 100%;
   padding: 17.94px, 0px, 19.54px, 0px;
   border-radius: 10px;
   color: white;
-  background: tomato;
+  background: red;
   border: none;
   font-family: 'aeonik',sans-serif;
 font-size: 16px;
@@ -290,7 +290,7 @@ text-align: left;
 }
 
 .auth-signin-sub-child > a{
-  color:tomato;
+  color:red;
 }
 
 .alert{
@@ -346,7 +346,7 @@ text-align: left;
 .alert-text-danger{
   font-size: 18px;
   font-weight: 700;
-  color:tomato;
+  color:red;
   font-family: 'Manrope', sans-serif;
 }
 
@@ -535,8 +535,8 @@ width: 100%;
 
 .nav-signup-btn:hover {
   background: transparent;
-  border: 2px solid tomato;
-  color: tomato;
+  border: 2px solid red;
+  color: red;
 }
 
 .nav-signup-btn {
@@ -546,7 +546,7 @@ width: 100%;
 }
 
 .nav-signin-btn {
-  background: tomato;
+  background: red;
   color: white;
   border: none;
 }
@@ -619,7 +619,7 @@ text-decoration: none;
 }
 
 .hero-right-cont{
-  background: tomato;
+  background: red;
   border-radius:17.89px;
   width: 810px;
   padding: 0 30px;
@@ -720,7 +720,7 @@ text-align: center;
 }
 
 .hero-more-btn{
-          background: tomato;
+          background: red;
           Width:150px;
         Height:60px;
         color: white;
@@ -848,7 +848,7 @@ text-align: center;
   font-family: 'aeonik', sans-serif;
   font-size: 32px;
   font-weight: 500;
-  color:tomato;
+  color:red;
 }
 
 /*  Responsive styling */

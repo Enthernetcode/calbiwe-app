@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" type="image/x-icon" href="../assets/logo.png" />
     <link rel="stylesheet" href="../custom/styles.css">
+    <link rel="stylesheet" href="../index.css">
    
 </head>
 <body>
@@ -41,88 +42,88 @@
     <div class="d-flex flex-wrap  align-items-center gap-3">
       <a href="equ.html" class="fa fa-arrow-left fs-24" style="text-decoration:none; color:teal;"></a>
             <span class="aeonik " style="color: teal;font-size: 16px; font-weight: 700;">
-                Defibrillator > <span style="color: #a2a1ab;font-weight: 500;">Equipment Log</span>
+              <span id="equipmentname">Defibrillator ></span> <span style="color: #a2a1ab;font-weight: 500;">Equipment Log</span>
             </span>
     </div>
     
 </nav>
 <!-- Nav bar components end -->
-<div class="d-flex w-100 p-3 equbg align-items-center justify-content-between flex-wrap  gap-2">
+<div id="equbg" class="d-flex w-100 p-3 equbg align-items-center justify-content-between flex-wrap  gap-2">
         <span class="aeonik d-flex align-items-center gap-2 flex-wrap " style="color: #ffffff;font-size: 30px; font-weight: 700;">
-         <img src="../assets/equipment.webp" alt="equipment" class="object-fit-cover equipment">  <div class="d-flex flex-column manrope">Defibrillator
+         <img id="equipmentimg" src="../assets/equipment.webp" alt="equipment" class="object-fit-cover equipment">  <div id="equipmentname-ii" class="d-flex flex-column manrope">Defibrillator
          </div>
         </span>
  
     </div>
 <div class="w-100 p-3 d-flex flex-wrap gap-3 ">
-<div id="edit-btn" class="dep depbtn fw-bolder gap-2" style="background: tomato;color: #ffffff;">Edit <i class="fa fa-edit"></i></div>
+<div id="edit-btn" class="dep depbtn fw-bolder gap-2" style="background: red;color: #ffffff;">Edit <i class="fa fa-edit"></i></div>
 </div>
 
 <!-- elog none edit bar components start -->
 <div id="not-editable" class="w-100 max-w-505 p-3">
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Condition:</div>
-<div style="color:gray;">Functional</div>
+<div id="condition" style="color:gray;">............</div>
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Types:</div>
-<div style="color:gray;">Automated</div>
+<div id="type" style="color:gray;">...........</div>
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Serial number:</div>
-<div style="color:gray;">DEF123456789</div>
+<div id="serialno" style="color:gray;">...............</div>
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Manufacturer:</div>
-<div style="color:gray;">Meditech Solutions Inc.</div>
+<div id="manufacturer" style="color:gray;">......................</div>
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Model number:</div>
-<div style="color:gray;">DFR-2000</div>
+<div id="modelno" style="color:gray;">............</div>
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Original manufacturer:</div>
-<div style="color:gray;">Meditech Innovations Ltd.</div>
+<div id="omanufacturer" style="color:gray;">................................</div>
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Warranty:</div>
-<div style="color:gray;">Expires on 31/12/2025</div>
+<div id="warranty" style="color:gray;">........................</div>
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Cost:</div>
-<div style="color:gray;">₦1,500,000.00</div>
+<div id="cost" style="color:gray;">........................</div>
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Risk inclusion factor:</div>
-<div style="color:gray;">Medium</div>
+<div id="rif" style="color:gray;">.....................</div>
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Location:</div>
-<div style="color:gray;">Emergency Room</div>
+<div id="location" style="color:gray;">......................</div>
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Status:</div>
-<div style="color:gray;">Available</div>
+<div id="status" style="color:gray;">............</div>
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Supplier:</div>
-<div style="color:gray;">Lifeline Medical Supplies Ltd.</div>
+<div id="supplier" style="color:gray;">..................................</div>
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Purchase order:</div>
-<div style="color:gray;">PO-123456</div>
+<div id="purchorder" style="color:gray;">.........................</div>
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Purchase cost:</div>
-<div style="color:gray;">₦1,800,000.00</div>
+<div id="purchcost" style="color:gray;">.....................</div>
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Estimated aquisision cost:</div>
-<div style="color:gray;">₦2,000,000.00</div>
+<div id="eac" style="color:gray;">..............</div>
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Remark:</div>
-<div style="color:gray;">Device serviced annually; Next maintenance due in July 2024</div>
+<div id="remark" style="color:gray;">..................................................................</div>
   </div>
 </div>
 <!-- elog none edit bar components end -->
@@ -131,69 +132,69 @@
 <div id="editable" class="w-100 max-w-505 p-3">
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Condition:</div>
-<input placeholder="Enter condition of device" value="Functional" style="outline:none; border: none; background: transparent;">
+<input id="econdition" placeholder="Enter condition of device" style="outline:none; border: none; background: transparent;">
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Types:</div>
-<input placeholder="Enter type of device" value="Automated" style="outline:none; border: none; background: transparent;">
+<input id="etype" placeholder="Enter type of device" style="outline:none; border: none; background: transparent;">
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Serial number:</div>
-<input placeholder="Enter Serial no. of device" value="DEF123456789" style="outline:none; border: none; background: transparent;">
+<input id="eserialno" placeholder="Enter Serial no. of device" style="outline:none; border: none; background: transparent;">
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Manufacturer:</div>
-<input placeholder="Enter Manufacturer's name" value="Meditech Solutions Inc" style="outline:none; border: none; background: transparent;">
+<input id="emanufacturer" placeholder="Enter Manufacturer's name" style="outline:none; border: none; background: transparent;">
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Model number:</div>
-<input placeholder="Enter model no. of device" value="DFR-2000" style="outline:none; border: none; background: transparent;">
+<input id="emodelno" placeholder="Enter model no. of device" style="outline:none; border: none; background: transparent;">
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Original manufacturer:</div>
-<input placeholder="Enter original manufacturer's name" value="Meditech Innovations Ltd" style="outline:none; border: none; background: transparent;">
+<input id="eomanufacturer" placeholder="Enter original manufacturer's name" style="outline:none; border: none; background: transparent;">
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Warranty:</div>
-<input placeholder="Enter warranty of device" value="Expires on 31/12/2025" style="outline:none; border: none; background: transparent;">
+<input id="ewarranty" placeholder="Enter warranty of device" style="outline:none; border: none; background: transparent;">
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Cost:</div>
-<input placeholder="Enter device cost" value="₦1,500,000.00" style="outline:none; border: none; background: transparent;">
+<input id="ecost" placeholder="Enter device cost" style="outline:none; border: none; background: transparent;">
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Risk inclusion factor:</div>
-<input placeholder="Enter the RIF of device" value="Medium" style="outline:none; border: none; background: transparent;">
+<input id="erif" placeholder="Enter the RIF of device" style="outline:none; border: none; background: transparent;">
 </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Location:</div>
-<input placeholder="Enter device Location" value="Emergency Room" style="outline:none; border: none; background: transparent;">
+<input id="elocation" placeholder="Enter device Location" style="outline:none; border: none; background: transparent;">
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Status:</div>
-<input placeholder="Enter device Status" value="Available" style="outline:none; border: none; background: transparent;">
+<input id="estatus" placeholder="Enter device Status" style="outline:none; border: none; background: transparent;">
 </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Supplier:</div>
-<input placeholder="Enter device Supplier" value="Lifeline Medical Supplies Ltd" style="outline:none; border: none; background: transparent;">
+<input id="esupplier" placeholder="Enter device Supplier" style="outline:none; border: none; background: transparent;">
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Purchase order:</div>
-<input placeholder="Enter device PO" value="PO-123456" style="outline:none; border: none; background: transparent;">
+<input id="epurchorder" placeholder="Enter device PO" style="outline:none; border: none; background: transparent;">
 </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Purchase cost:</div>
-<input placeholder="Enter device purchase cost" value="₦1,800,000.00" style="outline:none; border: none; background: transparent;">
+<input id="epurchcost" placeholder="Enter device purchase cost" style="outline:none; border: none; background: transparent;">
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Estimated aquisision cost:</div>
-<input placeholder="Enter device EAC" value="₦2,000,000.00" style="outline:none; border: none; background: transparent;">
+<input id="eeac" placeholder="Enter device EAC" style="outline:none; border: none; background: transparent;">
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Remark:</div>
-<input placeholder="Enter device remark" value="Device serviced annually; Next maintenance due in July 2024" style="outline:none; border: none; background: transparent;">
+<input id="eremark" placeholder="Enter device remark" style="outline:none; border: none; background: transparent;">
   </div>
-<div class="confirm-btn dep formbtn fw-bolder gap-2" style="background: teal;color: #ffffff;">Update <i class="fa fa-check"></i></div>
+<div id="create-btn" class="confirm-btn dep formbtn fw-bolder gap-2" style="background: teal;color: #ffffff;">Update</div>
 </div>
 <!-- elog editable bar components end -->
 
@@ -203,5 +204,221 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="../index.js"></script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+  import { getDatabase,ref, get, update, remove,set, child} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+  import { getStorage, ref as sRefe, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
+
+  const firebaseConfig = {
+      apiKey: "AIzaSyD_7UtoovjIRudRWjTzPp20V5h7MnnPJ3w",
+    authDomain: "hr-management-f5217.firebaseapp.com",
+    databaseURL: "https://hr-management-f5217-default-rtdb.firebaseio.com",
+    projectId: "hr-management-f5217",
+    storageBucket: "hr-management-f5217.appspot.com",
+    messagingSenderId: "853865580222",
+    appId: "1:853865580222:web:938148d73ffd6a4e2440ef"
+    };
+    var app = initializeApp(firebaseConfig);
+    var db = getDatabase(); 
+    var sRef = sRefe;
+    const storage = getStorage(app);
+    let hospitalObject;
+    let departments;
+    let cards;
+    var currentUser = null;
+    currentUser = JSON.parse(localStorage.getItem('user'));
+    const condition= document.getElementById("condition");
+    const type = document.getElementById("type");
+    const serialno = document.getElementById("serialno");
+    const manufacturer = document.getElementById("manufacturer");
+    const modelno = document.getElementById("modelno");
+    const omanufacturer = document.getElementById("omanufacturer");
+    const warranty = document.getElementById("warranty");
+    const cost = document.getElementById("cost");
+    const rif = document.getElementById("rif");
+    const location = document.getElementById("location");
+    const status = document.getElementById("status");
+    const supplier = document.getElementById("supplier");
+    const purchorder = document.getElementById("purchorder");
+    const purchcost = document.getElementById("purchcost");
+    const eac = document.getElementById("eac");
+    const remark = document.getElementById("remark");
+    const econdition= document.getElementById("econdition");
+    const etype = document.getElementById("etype");
+    const eserialno = document.getElementById("eserialno");
+    const emanufacturer = document.getElementById("emanufacturer");
+    const emodelno = document.getElementById("emodelno");
+    const eomanufacturer = document.getElementById("eomanufacturer");
+    const ewarranty = document.getElementById("ewarranty");
+    const ecost = document.getElementById("ecost");
+    const erif = document.getElementById("erif");
+    const elocation = document.getElementById("elocation");
+    const estatus = document.getElementById("estatus");
+    const esupplier = document.getElementById("esupplier");
+    const epurchorder = document.getElementById("epurchorder");
+    const epurchcost = document.getElementById("epurchcost");
+    const eeac = document.getElementById("eeac");
+    const eremark = document.getElementById("eremark");
+    const equipmentname = document.getElementById("equipmentname");
+    const equipmentnameii = document.getElementById("equipmentname-ii");
+    const equipmentimg = document.getElementById("equipmentimg");
+    const equbg = document.getElementById("equbg");
+    currentUser = JSON.parse(localStorage.getItem('user'));
+    const equname = localStorage.getItem("equipmentname");
+    const depname = localStorage.getItem("departmentname");
+    const mainid = localStorage.getItem("maintainlogid");
+    equipmentnameii.innerHTML=`${equname}`;
+    equipmentname.innerText=equname+" >";
+    const yesbtn = document.querySelector(".yesbtn");
+    
+
+      async function getHospital(){
+        const hospitalRef = ref(db, "Hospital/"+currentUser.hospital.replace(/[^\w]/g, ""));
+                 await get(hospitalRef).then((snapshot) => {
+                  if(snapshot.val()){
+                    hospitalObject = snapshot.val();
+                    const filteredDepartment = hospitalObject.departments.filter(d=> d.name === depname)[0];
+                     const selectedEqiupment = filteredDepartment.equipments.filter(e=> e.name === equname)[0];
+                    equbg.style.backgroundImage = `url(${selectedEqiupment.img})`;
+                    equipmentimg.src = selectedEqiupment.img;
+                    const thisEquipmentLog = selectedEqiupment?.equiplog? selectedEqiupment.equiplog : null;
+                    if(thisEquipmentLog){
+                       condition.innerText = thisEquipmentLog.condition;
+     type.innerText = thisEquipmentLog.type;
+     serialno.innerText = thisEquipmentLog.serialno;
+     manufacturer.innerText = thisEquipmentLog.manufacturer;
+     modelno.innerText = thisEquipmentLog.modelno;
+     omanufacturer.innerText = thisEquipmentLog.omanufacturer;
+     warranty.innerText = thisEquipmentLog.warranty;
+     cost.innerText = thisEquipmentLog.cost;
+     rif.innerText = thisEquipmentLog.rif;
+     location.innerText = thisEquipmentLog.location;
+     status.innerText = thisEquipmentLog.status;
+     supplier.innerText = thisEquipmentLog.supplier;
+     purchorder.innerText = thisEquipmentLog.purchorder;
+     purchcost.innerText = thisEquipmentLog.purchcost;
+     eac.innerText = thisEquipmentLog.eac;
+     remark.innerText = thisEquipmentLog.remark;
+     econdition.value = thisEquipmentLog.condition;
+     etype.value = thisEquipmentLog.type;
+     eserialno.value = thisEquipmentLog.serialno;
+     emanufacturer.value = thisEquipmentLog.manufacturer;
+     emodelno.value = thisEquipmentLog.modelno;
+     eomanufacturer.value = thisEquipmentLog.omanufacturer;
+     ewarranty.value = thisEquipmentLog.warranty;
+     ecost.value = thisEquipmentLog.cost;
+     erif.value = thisEquipmentLog.rif;
+     elocation.value = thisEquipmentLog.location;
+     estatus.value = thisEquipmentLog.status;
+     esupplier.value = thisEquipmentLog.supplier;
+     epurchorder.value = thisEquipmentLog.purchorder;
+     epurchcost.value = thisEquipmentLog.purchcost;
+     eeac.value = thisEquipmentLog.eac;
+     eremark.value = thisEquipmentLog.remark;
+                    }
+    
+                   }else{
+                    console.log("no snapshot")
+                   }})}
+       
+        window.onload = function(){
+          getHospital();
+           yesbtn.addEventListener("click", ()=>{
+            document.getElementById("confirm").style.display="none";
+            if(!econdition.value||!etype.value||!eserialno.value||!emanufacturer.value||!emodelno.value||!eomanufacturer.value||!ewarranty.value||!ecost.value||!erif.value||!elocation.value||!estatus.value||!esupplier.value||!epurchorder.value||!epurchcost.value||!eeac.value||!eremark.value){
+          const errorAlert = document.createElement("div");
+                errorAlert.classList.add("alert");
+                errorAlert.innerHTML = `
+                  <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:red;"></i>
+                  <div class="alert-text-danger">All field must be filled!</div>
+                `;
+                errorAlert.style.top = "-50px";
+                document.querySelector("body").appendChild(errorAlert);
+      
+                setTimeout(() => {
+                  errorAlert.style.top = "70px";
+                }, 0);
+      
+                setTimeout(() => {
+                  errorAlert.remove();
+                  document.getElementById("create-btn").innerHTML=`Update`;
+                }, 2000);
+              }else{
+                document.getElementById("create-btn").innerHTML=`A moment...`;
+
+                updateEquipmentLog(equname, depname, {
+                  condition: econdition.value,
+                  type: etype.value,
+     serialno: eserialno.value,
+     manufacturer: emanufacturer.value,
+     modelno: emodelno.value,
+     omanufacturer: eomanufacturer.value,
+     warranty: ewarranty.value,
+     cost: ecost.value,
+     rif: erif.value,
+     location: elocation.value,
+     status: estatus.value,
+     supplier: esupplier.value,
+     purchorder: epurchorder.value,
+     purchcost: epurchcost.value,
+     eac: eeac.value,
+     remark: eremark.value,
+                })
+
+  async function updateEquipmentLog(equipmentName, departmentName, updatedLogData) {
+  try {
+
+    // Find the department and equipment to update
+    const departmentIndex = hospitalObject.departments.findIndex(d => d.name === departmentName);
+    if (departmentIndex === -1) {
+      console.error("Department not found:", departmentName);
+      return; // Exit if department not found
+    }
+
+    const selectedEquipmentIndex = hospitalObject.departments[departmentIndex].equipments.findIndex(e => e.name === equipmentName);
+    if (selectedEquipmentIndex === -1) {
+      console.error("Equipment not found:", equipmentName);
+      return; // Exit if equipment not found
+    }
+
+    // Check for existing equipmentLog object
+    let equipmentlog = hospitalObject.departments[departmentIndex].equipments[selectedEquipmentIndex].equiplog;
+    if (!equipmentlog) {
+      // Create a new equipmentLog object if it doesn't exist
+      equipmentlog = {}; // Initialize an empty object
+    }
+
+    // Update equipmentLog properties (merge with existing)
+    equipmentlog = { ...equipmentlog, ...updatedLogData };
+
+    // Create copies for updates (optional, but recommended for immutability)
+    const updatedHospitalObject = { ...hospitalObject };
+    const updatedDepartment = { ...updatedHospitalObject.departments[departmentIndex] };
+    const updatedEquipment = { ...updatedDepartment.equipments[selectedEquipmentIndex] };
+
+    // Update the equipmentLog property within the equipment object
+    updatedEquipment.equiplog = equipmentlog;
+    updatedDepartment.equipments[selectedEquipmentIndex] = updatedEquipment;
+    updatedHospitalObject.departments[departmentIndex] = updatedDepartment;
+  // Update the Firestore document with the modified hospital object
+  const updateRef = ref(db, "Hospital/" + currentUser.hospital.replace(/[^\w]/g, ""));
+    await update(updateRef, updatedHospitalObject);
+
+    console.log("updated successfully!");
+    document.getElementById("create-btn").innerHTML=`Updated <i class="fa fa-check"></i>`;
+    getHospital();
+    // Update UI or perform other actions (optional)
+  } catch (error) {
+    console.error("Error updating equipment log:", error);
+    document.getElementById("create-btn").innerHTML=`Try again`;
+  }
+}
+
+      
+              
+                }
+           })
+        }
+  </script>
 </body>
 </html>

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" type="image/x-icon" href="../assets/logo.png" />
     <link rel="stylesheet" href="../custom/styles.css">
+    <link rel="stylesheet" href="../index.css">
    
 </head>
 <body>
@@ -41,15 +42,15 @@
     <div class="d-flex flex-wrap  align-items-center gap-3">
       <a href="equ.html" class="fa fa-arrow-left fs-24" style="text-decoration:none; color:teal;"></a>
             <span class="aeonik " style="color: teal;font-size: 16px; font-weight: 700;">
-                Defibrillator > <span style="color: #a2a1ab;font-weight: 500;">Create Log</span>
+                <span id="equipmentname">Defibrillator ></span> <span style="color: #a2a1ab;font-weight: 500;">Create Log</span>
             </span>
     </div>
     
 </nav>
 <!-- Nav bar components end -->
-<div class="d-flex w-100 p-3 equbg align-items-center justify-content-between flex-wrap  gap-2">
+<div id="equbg" class="d-flex w-100 p-3 equbg align-items-center justify-content-between flex-wrap  gap-2">
         <span class="aeonik d-flex align-items-center gap-2 flex-wrap " style="color: teal;font-size: 30px; font-weight: 700;">
-         <img src="../assets/equipment.webp" alt="equipment" class="object-fit-cover equipment">  <div class="d-flex flex-column manrope">Defibrillator
+         <img id="equipmentimg" src="../assets/equipment.webp" alt="equipment" class="object-fit-cover equipment">  <div id="equipmentname-ii" class="d-flex flex-column manrope" style="color:white;">Defibrillator
          </div>
         </span>
  
@@ -60,37 +61,243 @@
 <div class="w-100 max-w-505 p-3">
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Problem:</div>
-<input placeholder="What's wrong with the device" style="outline:none; border: none; background: transparent;">
+<input id="problem" placeholder="What's wrong with the device" style="outline:none; border: none; background: transparent;">
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Engineer name:</div>
-<input placeholder="What's your full name" style="outline:none; border: none; background: transparent;">
+<input id="engr" placeholder="What's your full name" style="outline:none; border: none; background: transparent;">
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Condition:</div>
-<input placeholder="that's the device current state" style="outline:none; border: none; background: transparent;">
+<input id="condition" placeholder="that's the device current state" style="outline:none; border: none; background: transparent;">
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Status:</div>
-<input placeholder="Manual or Automatic or Wearable" style="outline:none; border: none; background: transparent;">
+<input id="status" placeholder="Manual or Automatic or Wearable" style="outline:none; border: none; background: transparent;">
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Job type:</div>
-<input placeholder="What kind of maintenance is carried out" style="outline:none; border: none; background: transparent;">
+<input id="jobtype" placeholder="What kind of maintenance is carried out" style="outline:none; border: none; background: transparent;">
   </div>
 <div class="d-flex flex-column p-2 elog manrope">
   <div>Due maintenance date:</div>
-<input placeholder="Enter the due maintenance date" style="outline:none; border: none; background: transparent;">
+<input id="dmd" placeholder="Enter the due maintenance date" type="date" style="outline:none; border: none; background: transparent;">
   </div>
-<div class="confirm-btn dep formbtn max-w-505 fw-bolder gap-2" style="background: tomato;color: #ffffff;">Create <i class="fa fa-check"></i></div>
+  <div class="d-flex flex-column p-2 elog manrope">
+    <div>Work order:</div>
+  <input id="workorder" placeholder="Enter work order" style="outline:none; border: none; background: transparent;">
+    </div>
+  <div class="d-flex flex-column p-2 elog manrope">
+    <div>Date:</div>
+  <input id="date" placeholder="Enter date" type="date" style="outline:none; border: none; background: transparent;">
+    </div>
+  <div class="d-flex flex-column p-2 elog manrope">
+    <div>Time:</div>
+  <input id="time" placeholder="Enter time" type="time" style="outline:none; border: none; background: transparent;">
+    </div>
+  <div class="d-flex flex-column p-2 elog manrope">
+    <div>Location:</div>
+  <input id="location" placeholder="What location" style="outline:none; border: none; background: transparent;">
+    </div>
+  <div class="d-flex flex-column p-2 elog manrope">
+    <div>Priority est. time:</div>
+  <input id="pet" placeholder="Enter estimated time" type="date" style="outline:none; border: none; background: transparent;">
+    </div>
+  <div class="d-flex flex-column p-2 elog manrope">
+    <div>Model/Serial:</div>
+  <input id="model" placeholder="Enter the model" style="outline:none; border: none; background: transparent;">
+    </div>
+    <div class="d-flex flex-column p-2 elog manrope">
+      <div>Building:</div>
+    <input id="building" placeholder="What building" style="outline:none; border: none; background: transparent;">
+      </div>
+    <div class="d-flex flex-column p-2 elog manrope">
+      <div>Cost center:</div>
+    <input id="costcenter" placeholder="Enter cost center" style="outline:none; border: none; background: transparent;">
+      </div>
+    <div class="d-flex flex-column p-2 elog manrope">
+      <div>Type:</div>
+    <input id="type" placeholder="Enter type" style="outline:none; border: none; background: transparent;">
+      </div>
+<div id="create-btn" class="confirm-btn dep formbtn max-w-505 fw-bolder gap-2" style="background: red;color: #ffffff;">Create <i class="fa fa-gears"></i></div>
 </div>
 <!-- elog editable bar components end -->
-
+ 
 
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="../index.js"></script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+  import { getDatabase,ref, get, update, remove,set, child} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+  import { getStorage, ref as sRefe, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
+
+  const firebaseConfig = {
+      apiKey: "AIzaSyD_7UtoovjIRudRWjTzPp20V5h7MnnPJ3w",
+    authDomain: "hr-management-f5217.firebaseapp.com",
+    databaseURL: "https://hr-management-f5217-default-rtdb.firebaseio.com",
+    projectId: "hr-management-f5217",
+    storageBucket: "hr-management-f5217.appspot.com",
+    messagingSenderId: "853865580222",
+    appId: "1:853865580222:web:938148d73ffd6a4e2440ef"
+    };
+    var app = initializeApp(firebaseConfig);
+    var db = getDatabase(); 
+    var sRef = sRefe;
+    const storage = getStorage(app);
+    let hospitalObject;
+    let departments;
+    let cards;
+    var currentUser = null;
+    currentUser = JSON.parse(localStorage.getItem('user'));
+    const problem = document.getElementById("problem");
+    const engr = document.getElementById("engr");
+    const condition = document.getElementById("condition");
+    const status = document.getElementById("status");
+    const jobtype = document.getElementById("jobtype");
+    const dmd = document.getElementById("dmd");
+    const workorder = document.getElementById("workorder");
+    const date = document.getElementById("date");
+    const time = document.getElementById("time");
+    const location = document.getElementById("location");
+    const pet = document.getElementById("pet");
+    const model = document.getElementById("model");
+    const building = document.getElementById("building");
+    const costcenter = document.getElementById("costcenter");
+    const type = document.getElementById("type");
+    const equipmentname = document.getElementById("equipmentname");
+    const equipmentnameii = document.getElementById("equipmentname-ii");
+    const equipmentimg = document.getElementById("equipmentimg");
+    const equbg = document.getElementById("equbg");
+    currentUser = JSON.parse(localStorage.getItem('user'));
+    const equname = localStorage.getItem("equipmentname");
+    const depname = localStorage.getItem("departmentname");
+    equipmentnameii.innerHTML=`${equname}`;
+    equipmentname.innerText=equname+" >";
+    const yesbtn = document.querySelector(".yesbtn");
+
+      async function getHospital(){
+        const hospitalRef = ref(db, "Hospital/"+currentUser.hospital.replace(/[^\w]/g, ""));
+                 await get(hospitalRef).then((snapshot) => {
+                  if(snapshot.val()){
+                    hospitalObject = snapshot.val();
+                    const filteredDepartment = hospitalObject.departments.filter(d=> d.name === depname)[0];
+                     const selectedEqiupment = filteredDepartment.equipments.filter(e=> e.name === equname)[0];
+                    console.log(selectedEqiupment)
+                    equbg.style.backgroundImage = `url(${selectedEqiupment.img})`;
+                    equipmentimg.src = selectedEqiupment.img;
+                 
+                   }else{
+                    console.log("no snapshot")
+                   }})}
+       
+        window.onload = function(){
+          getHospital();
+           yesbtn.addEventListener("click", ()=>{
+            document.getElementById("confirm").style.display="none";
+            if(!problem.value||!engr.value||!condition.value||!jobtype.value||!status.value||!dmd.value||!workorder.value||!date.value||!time.value||!location.value||!pet.value||!model.value||!building.value||!costcenter.value||!type.value){
+          const errorAlert = document.createElement("div");
+                errorAlert.classList.add("alert");
+                errorAlert.innerHTML = `
+                  <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:red;"></i>
+                  <div class="alert-text-danger">All field must be filled!</div>
+                `;
+                errorAlert.style.top = "-50px";
+                document.querySelector("body").appendChild(errorAlert);
+      
+                setTimeout(() => {
+                  errorAlert.style.top = "70px";
+                }, 0);
+      
+                setTimeout(() => {
+                  errorAlert.remove();
+                  document.getElementById("create-btn").innerHTML=`Create`;
+                }, 2000);
+              }else{
+                document.getElementById("create-btn").innerHTML=`A moment...`;
+
+  function generateRandomId() {
+  // Create a string of random characters (alphanumeric)
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let id = "";
+  for (let i = 0; i < 8; i++) {
+    id += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return id;
+}
+               const newlogs = {
+                 id: generateRandomId(),
+                 problem: problem.value,
+                 engr: engr.value,
+                 condition: condition.value,
+                 status: status.value,
+                 jobtype: jobtype.value,
+                 dmd: dmd.value,
+                 workorder: workorder.value,
+                 date: date.value,
+                 time: time.value,
+                 location: location.value,
+                 pet: pet.value,
+                 model: model.value,
+                 building: building.value,
+                 costcenter: costcenter.value,
+                 type: type.value,
+                 selectedDept: depname,
+               }
+                addNewMaintenanceLog(equname,depname,newlogs)
+      
+        async function addNewMaintenanceLog(equipmentName, departmentName, newLogData) {
+  try {
+    // Find the department and equipment to update
+    const departmentIndex = hospitalObject.departments.findIndex(d => d.name === departmentName);
+    if (departmentIndex === -1) {
+      console.error("Department not found:", departmentName);
+      return; // Exit if department not found
+    }
+
+    const selectedEquipmentIndex = hospitalObject.departments[departmentIndex].equipments.findIndex(e => e.name === equipmentName);
+    if (selectedEquipmentIndex === -1) {
+      console.error("Equipment not found:", equipmentName);
+      return; // Exit if equipment not found
+    }
+ 
+    // Create a copy of the hospital object and department for updates
+    const updatedHospitalObject = { ...hospitalObject };
+    const updatedDepartment = { ...updatedHospitalObject.departments[departmentIndex] };
+    const updatedEquipment = { ...hospitalObject.departments[departmentIndex].equipments[selectedEquipmentIndex] };
+    // Check if the mainlogs array exists, otherwise initialize it as an empty array
+    updatedEquipment.mainlogs = updatedEquipment.mainlogs || [];
+
+    // Add the new maintenance log object to the mainlogs array
+    updatedEquipment.mainlogs.push(newLogData);
+
+    // Update the department with the modified equipment object
+    updatedDepartment.equipments[selectedEquipmentIndex] = updatedEquipment;
+    updatedHospitalObject.departments[departmentIndex] = updatedDepartment;
+
+    // Update the Firestore document with the modified hospital object
+    const updateRef = ref(db, "Hospital/" + currentUser.hospital.replace(/[^\w]/g, ""));
+    await update(updateRef, updatedHospitalObject);
+
+    console.log("Maintenance log added successfully!");
+    document.getElementById("create-btn").innerHTML=`Created <i class="fa fa-check"></i>`;
+
+    // Update UI or perform other actions (optional)
+  } catch (error) {
+    console.error("Error adding maintenance log:", error);
+    document.getElementById("create-btn").innerHTML=`Try again`;
+
+  }
+}
+
+
+      
+              
+                }
+           })
+        }
+  </script>
 </body>
 </html>

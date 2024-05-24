@@ -18,7 +18,7 @@
         <div class="auth-cont-left">
             <div class="auth-logo-cont">
                 <div class="auth-img"> <img src="../assets/logo.gif" alt="logo" style="width: 50px;height: 50px;"></div>
-                    <span class="auth-logo-text" style="color: tomato;">
+                    <span class="auth-logo-text" style="color: red;">
                         Calbiwe
                     </span>
             </div>
@@ -28,7 +28,7 @@
             <div class="auth-logo-cont-form">
                
                 <div class="auth-img-form"> <img src="../assets/logo.gif" alt="logo"></div>
-                    <span class="auth-logo-text-form" style="color: tomato;">
+                    <span class="auth-logo-text-form" style="color: red;">
                         Calbiwe
                     </span>
             </div>
@@ -58,7 +58,7 @@
                 $("#emailabel").text("Email address");
                 if (email === "" || !isValidEmail(email)) {
                     $("#emailabel").text("Valid email is required*");
-                    $("#emailabel").css("color","tomato");
+                    $("#emailabel").css("color","red");
                     isValid = false;
                 }else{
                     const newParag = $(` <div class="alertt">

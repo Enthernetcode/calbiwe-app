@@ -39,7 +39,7 @@
 <div class="side-left-cont">
     <div class="side-left-child-cont">
         <i class="fa fa-arrow-left gg" style="color:teal;font-size: 24px;"></i>
-        <i class="fa fa-border-none" style="color: tomato; font-size: 24px;"></i>
+        <i class="fa fa-border-none" style="color: red; font-size: 24px;"></i>
         <i class="fa fa-circle-user" style="color:teal;font-size: 24px;"></i>
         <i class="fa fa-users" style="color:teal;font-size: 24px;"></i>
     </div>
@@ -55,7 +55,7 @@
             <div class="side-left-link-text">Go back</div>
         </a>
         <div id="profileLink" class="side-left-link-cont active-side-left-link">
-            <i class="fa fa-border-none" style="color: tomato; font-size: 24px;"></i>
+            <i class="fa fa-border-none" style="color: red; font-size: 24px;"></i>
             <div class="side-left-link-text" style="color: #ff6347ce;">Defibrillator</div>
         </div>
         <a href="admin.html" id="homeLink" class="side-left-link-cont">
@@ -79,13 +79,13 @@
 <nav class="d-flex flex-column gap-2 navbg  w-100 position-sticky top-0 p-3">
     <div class="d-flex flex-wrap  align-items-center gap-2">
             <span class="aeonik " style="color: teal;font-size: 16px; font-weight: 700;">
-                Emergency Department (ED) > <span id="equipment-name" style="color: #a2a1ab;font-weight: 500;">Defibrillator</span>
+               <span id="department-name"> Emergency Department (ED) > </span><span id="equipment-name" style="color: #a2a1ab;font-weight: 500;">Defibrillator</span>
             </span>
     </div>
     
 </nav>
 <!-- Nav bar components end -->
-<div class="d-flex w-100 p-3 equbg align-items-center justify-content-between flex-wrap  gap-2">
+<div id="equbg" class="d-flex w-100 p-3 equbg align-items-center justify-content-between flex-wrap  gap-2">
         <span class="aeonik d-flex align-items-center gap-2 flex-wrap " style="color: #ffffff;font-size: 30px; font-weight: 700;">
          <img id="equipment-img"  src="../assets/equipment.webp" alt="equipment" class="object-fit-cover equipment">  <div id="equipment-name-ii" class="d-flex flex-column manrope">Defibrillator <a href="equlog.html" class="manrope moredetails fw-300">View details</a></div> 
         </span>
@@ -96,23 +96,20 @@ A defibrillator is a medical device used to deliver an electric shock to the hea
 </div>
 
 <div class="w-100 p-3 d-flex flex-wrap gap-3 ">
-<div id="delbtn" class="confirm-btn dep depbtn fw-bolder gap-2" style="background: tomato;color: #ffffff;">Delete Equipment <i class="fa fa-trash"></i></div>
+<div id="delbtn" class="confirm-btn dep depbtn fw-bolder gap-2" style="background: red;color: #ffffff;">Delete Equipment <i class="fa fa-trash"></i></div>
 <a id="addlogbtn" href="postlog.html" class="dep depbtn fw-bolder" style="background: teal;color: #ffffff;">Add New Log +</a>
 </div>
 <!-- log bar components start -->
 <div id="maintainlogs" class="w-100  p-3 d-flex flex-wrap gap-3 ">
-<a href="mainlog.html" class="d-flex flex-column gap-2 p-3 log">
-  <div class="d-flex align-items-center gap-2 flex-wrap "><i class="fa fa-user-tie"></i>Engr. Matthew Dante</div>
-<div class="d-flex align-items-center gap-2 flex-wrap "><i class="fa fa-calendar"></i>09-07-24</div>
-  </a>
-<a href="mainlog.html" class="d-flex flex-column gap-2 p-3 log">
-  <div class="d-flex align-items-center gap-2 flex-wrap "><i class="fa fa-user-tie"></i>Engr. Rema Chude</div>
-<div class="d-flex align-items-center gap-2 flex-wrap "><i class="fa fa-calendar"></i>10-06-23</div>
-  </a>
-<a href="mainlog.html" class="d-flex flex-column gap-2 p-3 log">
-  <div class="d-flex align-items-center gap-2 flex-wrap "><i class="fa fa-user-tie"></i>Engr. Tunde Jude</div>
-<div class="d-flex align-items-center gap-2 flex-wrap "><i class="fa fa-calendar"></i>22-08-23</div>
-  </a>
+<div class="d-flex flex-column gap-2 p-3 log">
+  <div class="d-flex align-items-center gap-2 flex-wrap ">Loading...</div>
+</div>
+<div class="d-flex flex-column gap-2 p-3 log">
+  <div class="d-flex align-items-center gap-2 flex-wrap ">Loading...</div>
+</div>
+<div class="d-flex flex-column gap-2 p-3 log">
+  <div class="d-flex align-items-center gap-2 flex-wrap ">Loading...</div>
+</div>
 </div>
 <!-- log bar components end -->
 
@@ -145,30 +142,101 @@ A defibrillator is a medical device used to deliver an electric shock to the hea
     let cards;
     var currentUser = null;
     const equipmentname = document.getElementById("equipment-name");
+    const departmentname = document.getElementById("department-name");
     const equipmentdesc = document.getElementById("equipment-desc");
     const equipmentnameii = document.getElementById("equipment-name-ii");
     const equipmentimg = document.getElementById("equipment-img");
     const mainlogsEl = document.getElementById("maintainlogs");
     const addbtn = document.getElementById("addlogbtn");
+    const equbg = document.getElementById("equbg");
     currentUser = JSON.parse(localStorage.getItem('user'));
     const equname = localStorage.getItem("equipmentname");
     const depname = localStorage.getItem("departmentname");
     document.title=equname;
     let card;
     equipmentname.innerText=equname;
-    equipmentnameii.innerText=equname;
+    equipmentnameii.innerHTML=`${equname} <a href="equlog.html" class="manrope moredetails fw-300">View details</a>`;
+    departmentname.innerText=depname+" >";
       async function getHospital(){
         const hospitalRef = ref(db, "Hospital/"+currentUser.hospital.replace(/[^\w]/g, ""));
                  await get(hospitalRef).then((snapshot) => {
                   if(snapshot.val()){
                       hospitalObject = snapshot.val();
+                     const filteredDepartment = hospitalObject.departments.filter(d=> d.name === depname)[0];
+                     const selectedEqiupment = filteredDepartment.equipments.filter(e=> e.name === equname)[0];
+                    console.log(selectedEqiupment)
+                    equbg.style.backgroundImage = `url(${selectedEqiupment.img})`;
+                    equipmentimg.src = selectedEqiupment.img;
+                    equipmentdesc.innerText = selectedEqiupment.desc;
+                    if(selectedEqiupment?.mainlogs){
+                        cards="";
+                        selectedEqiupment.mainlogs.forEach((e)=>{
+                            const mainlogcard = `<div class="d-flex flex-column gap-2 p-3 log">
+                              <div class="d-flex align-items-center gap-2 flex-wrap logid "># ${e.id}</div>
+  <div class="d-flex align-items-center gap-2 flex-wrap "><i class="fa fa-user-tie"></i>${e.engr}</div>
+<div class="d-flex align-items-center gap-2 flex-wrap "><i class="fa fa-calendar"></i>${e.dmd}</div></div>`;
+                      cards += mainlogcard;
+                        })
+                        mainlogsEl.innerHTML=cards;
+                          // Check if the clicked element is a `.dep` child element
+  mainlogsEl.addEventListener('click', function(event) {
+    if (event.target.classList.contains('log') || event.target.closest('.log')) {
+      const clickedLog = event.target.closest('.log'); // Get the closest `.log` element
+      const logIdElement = clickedLog.querySelector('.logid');
+      if (logIdElement) { // Check if the element exists before accessing innerText
+      const logIdText = logIdElement.innerText.slice(2);
+      console.log(logIdText)
+       localStorage.setItem("maintainlogid", logIdText)
+       window.location.href = "mainlog.html"
+    }else{
+      console.warn("No element with class 'logid' found within the clicked element.");
+    }
+    }else{
+      console.warn("No element with class 'log' found within the clicked element.");
+    }
+}
+
+);
+    
+                     }else{
+                        mainlogsEl.innerHTML=`<div class="w-100 p-3 d-flex border" style="border-radius:7px;">No maintenance logs yet</div>`;
+                     }
                  }else{
                   console.log("no snapshot")
               }})}
 
-              function deleteEquipment(){
-                 
-              }
+  async function deleteEquipment() {
+    document.getElementById("delbtn").innerText="A moment..."
+                    document.getElementById("confirm").style.display="none";
+  try {
+    const filteredDepartmentIndex = hospitalObject.departments.findIndex(d => d.name === depname);
+    if (filteredDepartmentIndex === -1) {
+      console.error("Department not found.");
+      document.getElementById("delbtn").innerText="Try again"
+      return; // Exit if department doesn't exist
+    }
+
+    const department = hospitalObject.departments[filteredDepartmentIndex];
+    const filteredEquipmentIndex = department.equipments.findIndex(e => e.name === equname);
+    if (filteredEquipmentIndex === -1) {
+      console.error("Equipment not found.");
+      document.getElementById("delbtn").innerText="Try again"
+      return; // Exit if equipment doesn't exist
+    }
+    const updatedHospitalObject = { ...hospitalObject };
+    updatedHospitalObject.departments[filteredDepartmentIndex].equipments.splice(filteredEquipmentIndex, 1);
+    const updateRef = ref(db, "Hospital/" + currentUser.hospital.replace(/[^\w]/g, ""));
+    await update(updateRef, updatedHospitalObject);
+
+    console.log("Equipment deleted successfully!");
+     window.location.href = "dep.html"; 
+
+  } catch (error) {
+    console.error("Error deleting equipment:", error);
+    document.getElementById("delbtn").innerText="Try again"
+  }
+}
+
        
         window.onload = function(){
           getHospital();
