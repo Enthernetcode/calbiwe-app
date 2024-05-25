@@ -227,6 +227,9 @@
     let cards;
     var currentUser = null;
     currentUser = JSON.parse(localStorage.getItem('user'));
+    if(!currentUser){
+      window.location.href="../index.html"
+    }
     const condition= document.getElementById("condition");
     const type = document.getElementById("type");
     const serialno = document.getElementById("serialno");
@@ -264,6 +267,9 @@
     const equipmentimg = document.getElementById("equipmentimg");
     const equbg = document.getElementById("equbg");
     currentUser = JSON.parse(localStorage.getItem('user'));
+    if(currentUser?.title==="engr"){
+      document.getElementById("edit-btn").style.display="none";
+    }
     const equname = localStorage.getItem("equipmentname");
     const depname = localStorage.getItem("departmentname");
     const mainid = localStorage.getItem("maintainlogid");

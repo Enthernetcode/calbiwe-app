@@ -93,6 +93,12 @@
     let cards;
     var currentUser = null;
     currentUser = JSON.parse(localStorage.getItem('user'));
+    if(!currentUser){
+      window.location.href="../index.html"
+    }
+    if(currentUser?.title==="engr"){
+      window.location.href="../index.html"
+    }
     const name = document.getElementById("name");
     const desc = document.getElementById("desc");
     const hospitalnameEl = document.getElementById("hospital-name");

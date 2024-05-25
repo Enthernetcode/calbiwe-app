@@ -37,3 +37,11 @@ equipments:[
                          ]
                       }
                      ]
+
+
+                     {
+                      name: "Defibrillator",
+                      img: `https://www.gimaitaly.com/it/assets/altreimmagini/55514.jpg`,
+                      department: "Emergency Department (ED)",
+                      desc: "A defibrillator is a medical device used to deliver an electric shock to the heart in order to restore normal heart rhythm during sudden cardiac arrest.",       
+                    }

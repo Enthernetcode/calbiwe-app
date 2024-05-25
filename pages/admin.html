@@ -67,7 +67,7 @@
             <div class="side-left-link-text">Community</div>
         </a>        
     </div>
-    <div id="logoutLink" class="confirm-btn side-left-child-cont-slide ii">
+    <div id="logoutLink" class="side-left-child-cont-slide ii">
         <i class="fa fa-door-open" style="color:teal;font-size: 24px;"></i>
         <div class="side-left-link-text">Logout</div>
     </div>
@@ -149,7 +149,10 @@ const firebaseConfig = {
   let hospitalObject;
   var currentUser = null;
   currentUser = JSON.parse(localStorage.getItem('user'));
-     if(currentUser.title!=="admin"){window.location.href="../index.html"}
+  if(!currentUser){
+      window.location.href="../index.html"
+    }
+     if(currentUser?.title!=="admin"){window.location.href="../index.html"}
     async function getHospital(email,address,apass,spass,epass,img){
       const hospitalRef = ref(db, "Hospital/"+currentUser.hospital.replace(/[^\w]/g, ""));
                await get(hospitalRef).then((snapshot) => {

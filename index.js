@@ -24,10 +24,11 @@ $('#confirm, .nobtn').click(
        if (event.target !== this) return;
        $('#confirm').fadeOut();
 });
-// $('.yesbtn').click(
-//     function() {
-//       alert("Done");
-// });
+$('#logoutLink').click(
+    function() {
+      localStorage.setItem("user", null)
+      window.location.href="../index.html"
+});
 
 // DYNAMIC EDIT FORM FUNCTION
 $('#editable').hide();

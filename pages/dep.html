@@ -67,7 +67,7 @@
             <div class="side-left-link-text">Community</div>
         </a>        
     </div>
-    <div id="logoutLink" class="confirm-btn side-left-child-cont-slide ii">
+    <div id="logoutLink" class="side-left-child-cont-slide ii">
         <i class="fa fa-door-open" style="color:teal;font-size: 24px;"></i>
         <div class="side-left-link-text">Logout</div>
     </div>
@@ -141,6 +141,13 @@
       const equipmentsEl = document.getElementById("equipments");
       const addbtn = document.getElementById("adddepbtn");
       currentUser = JSON.parse(localStorage.getItem('user'));
+      if(!currentUser){
+      window.location.href="../index.html"
+    }
+      if(currentUser?.title === "engr"){
+        addbtn.style.display="none";
+        document.getElementById("delbtn").style.display="none";
+      }
       const depname = localStorage.getItem("departmentname");
       const hospitalnameEl = document.getElementById("hospital-name");
       let card;
@@ -150,15 +157,16 @@
                    await get(hospitalRef).then((snapshot) => {
                     if(snapshot.val()){
                         hospitalObject = snapshot.val();
+                        console.log(hospitalObject)
                         hospitalnameEl.innerHTML=`<img src=${hospitalObject?.img? hospitalObject.img : "../assets/ss.webp"} alt="banner" class="object-fit-cover banner">
                         ${hospitalObject.hospital}
                      `;
-                    const filteredDep = hospitalObject.departments.filter(d=> d.name === depname);
+                    const filteredDep = hospitalObject.departments.filter(d=> d.name === depname)[0];
                     console.log(filteredDep)
-                     departmentdesc.innerText=filteredDep[0].desc
-                     if(filteredDep[0]?.equipments){
+                     departmentdesc.innerText=filteredDep.desc
+                     if(filteredDep?.equipments){
                         cards="";
-                        filteredDep[0].equipments.forEach((e)=>{
+                        filteredDep.equipments.forEach((e)=>{
                             const equcard = `<div class="equ">${e.name}</div>`;
                       cards += equcard;
                         })

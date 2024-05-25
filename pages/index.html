@@ -41,6 +41,7 @@
         <i class="fa fa-border-none" style="color: red; font-size: 24px;"></i>
         <i class="fa fa-circle-user" style="color:teal;font-size: 24px;"></i>
         <i class="fa fa-users" style="color:teal;font-size: 24px;"></i>
+        <i class="fa fa-barcode" style="color:teal;font-size: 24px;"></i>
     </div>
     <div class="side-left-child-cont">
         <i class="fa fa-door-open" style="color:teal;font-size: 24px;"></i>
@@ -66,11 +67,11 @@
             <div class="side-left-link-text">Community</div>
         </a>        
 	<a href="scan.html" id="youtubeLink" class="side-left-link-cont">
-            <i class="fa fa-users" style="color:teal;font-size: 24px;"></i>
-            <div class="side-left-link-text">Scan.html</div>
+            <i class="fa fa-barcode" style="color:teal;font-size: 24px;"></i>
+            <div class="side-left-link-text">Scan</div>
         </a>
     </div>
-    <div id="logoutLink" class="confirm-btn side-left-child-cont-slide ii">
+    <div id="logoutLink" class="side-left-child-cont-slide ii">
         <i class="fa fa-door-open" style="color:teal;font-size: 24px;"></i>
         <div class="side-left-link-text">Logout</div>
     </div>
@@ -97,7 +98,7 @@
  <span id="hospital-name" class="aeonik d-flex w-100 p-3 align-items-center gap-2 flex-wrap " style="color: teal;font-size: 30px; font-weight: 700;">
          <img src="../assets/ss.webp" alt="banner" class="object-fit-cover banner">   My Hospital
         </span>
-<div class="w-100 p-3 d-flex flex-wrap gap-3 ">
+<div id="adddepbtn" class="w-100 p-3 d-flexc flex-wrap gap-3 ">
 <a href="postdep.html" class="dep depbtn fw-bolder" style="background: teal;color: #ffffff;">Add New Department +</a>
 </div>
 <!-- Card bar components start -->
@@ -154,7 +155,14 @@
       let cards;
       var currentUser = null;
       const departmentEl = document.getElementById("departments");
+      
       currentUser = JSON.parse(localStorage.getItem('user'));
+      if(!currentUser){
+      window.location.href="../index.html"
+    }
+      if(currentUser?.title==="engr"){
+    document.getElementById("adddepbtn").style.display="none";
+}
       const hospitalnameEl = document.getElementById("hospital-name");
         async function getHospital(){
           const hospitalRef = ref(db, "Hospital/"+currentUser.hospital.replace(/[^\w]/g, ""));

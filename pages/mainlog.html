@@ -255,6 +255,12 @@
     const equipmentimg = document.getElementById("equipmentimg");
     const equbg = document.getElementById("equbg");
     currentUser = JSON.parse(localStorage.getItem('user'));
+    if(!currentUser){
+      window.location.href="../index.html"
+    }
+    if(currentUser?.title==="engr"||currentUser.title==="staff"){
+           document.getElementById("edit-btn").style.display="none"
+    }
     const equname = localStorage.getItem("equipmentname");
     const depname = localStorage.getItem("departmentname");
     const mainid = localStorage.getItem("maintainlogid");

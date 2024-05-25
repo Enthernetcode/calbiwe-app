@@ -146,124 +146,139 @@ const firebaseConfig = {
                   {
                     name:"Intensive care unit (ICU)",
                     hospital: hospital,
-                    desc: " (NICU) in a hospital is a specialized unit designed to provide immediate  medical care to patients with acute illnesses or injuries.",
-                     equipments:[
-                      {
-                        name: "Ventilator",
-                        img: `https://www.gimaitaly.com/it/assets/altreimmagini/55514.jpg`,
-                        department: "Intesive Care Unit",
-                        desc: "A defibrillator is a medical device used to deliver an electric shock to the heart in order to restore normal heart rhythm during sudden cardiac arrest.",
-                         equiplog: {
-                          condition: "Functional",
-                          type: "Automated",
-                          serialno: "DEF123456789",
-                          manufacturer: "Meditech Solutions Inc.",
-                          modelno: "DFR-2000",
-                          omanufacturer: "Meditech Innovations Ltd.",
-                          warranty: "Expires on 31/12/2025",
-                          cost: 1500000.00,
-                          rif: "Medium",
-                          location: "Intensive Care Unit",
-                          status: "Available",
-                          supplier: "Lifeline Medical Supplies Ltd.",
-                          purchorder: "PO-123456",
-                          purchcost: 1800000.00,
-                          eac: 2000000.00,
-                          remark: "Device serviced annually; Next maintenance due in July 2024",
-                         },
-                         mainlogs:[
-                          {
-                              id: "1",
-                              equipment: "Ventilator",
-                              img: `https://www.gimaitaly.com/it/assets/altreimmagini/55514.jpg`,
-                              problem: "Device fails to power on intermittently",
-                              engr: "Reniel Chika",
-                              condition: "On repair",
-                              status: "Manual",
-                              tobtype: "Routine maintenance",
-                              dmd: "21-12-24",
-                          }
-                         ]
-                      }
-                     ]
+                    desc: "(NICU) in a hospital is a specialized unit designed to provide immediate  medical care to patients with acute illnesses or injuries.",
+                    equipments: [
+                    {
+                      name: "Ventilator",
+                      img: "https://5.imimg.com/data5/SELLER/Default/2023/1/QQ/IR/NG/979425/icu-ventilator.jpeg",
+                      department: "Intensive care unit (ICU)",
+                      desc: "Also known as a breathing machine, is a life-saving medical device that mechanically supports or takes over breathing for a patient who is unable to breathe on their own.",       
+                    },
+                    {
+                      name: "Patient monitor",
+                      img: "https://i0.wp.com/www.everymedical.com.ng/wp-content/uploads/2020/05/1589534578903.png?fit=750%2C750&ssl=1",
+                      department: "Intensive care unit (ICU)",
+                      desc: "An electronic device used in hospitals and other medical facilities to continuously monitor a patient's vital signs.",       
+                    },
+                    {
+                      name: "Electrocardiogram (ECG) machine",
+                      img: "https://www.cnet.com/a/img/resize/9baba8216cca337f5dca5c3b28ce4ffa07272cf3/hub/2018/09/13/549d629b-4809-4f13-b77a-8995d523c5c3/gettyimages-939280816.jpg?auto=webp&fit=crop&height=900&width=1200",
+                      department: "Intensive care unit (ICU)",
+                      desc: "Reads electrical activity of the heart using electrodes on chest and limbs. Shows heart rhythm and potential problems like arrhythmias or heart attack.",       
+                    },
+                    {
+                      name: "Suction machine",
+                      img: "https://www.kaycoindia.com/wp-content/uploads/2018/06/High-Flow-Suction-Unit.jpg",
+                      department: "Intensive care unit (ICU)",
+                      desc: "Removes fluids (mucus, blood) from airways or wounds using suction. Helps patients breathe easier and keeps surgical areas clear.",       
+                    },
+                    {
+                      name: "Pulse oximeter",
+                      img: "https://i5.walmartimages.com/seo/Fingertip-Pulse-Oximeter-Finger-Blood-Oxygen-Saturation-Monitor-SpO2-Level-Heart-Rate-Monitor_ae901d95-cecf-4d23-a703-15a3212e1bbe.c02230bd3c73bb498680d969e261f24b.jpeg",
+                      department: "Intensive care unit (ICU)",
+                      desc: "Clips onto finger to measure oxygen levels in blood. Helps assess breathing function and need for supplemental oxygen.",       
+                    },
+                    ]
                   },
                   {
                     name:"Neonatal intensive care unit",
                     hospital: hospital,
-                    desc: "Neonatal intensive care unit in a hospital is a specialized unit designed to provide immediate  medical care to patients with acute illnesses or injuries.",
-                     
+                    desc: "Neonatal intensive care unit in a hospital is a specialized unit designed to provide immediate  medical care to patients with acute illnesses or injuries.", 
+                    equipments: [
+                    {
+                      name: "Incubator",
+                      img: "https://cdn11.bigcommerce.com/s-x3ki4mm/images/stencil/1280x1280/products/2344/3247/AI-2_Infant_Incubator__29688.1572255768.png?c=2?imbypass=on",
+                      department: "Neonatal intensive care unit",
+                      desc: "Controlled environment chamber for premature babies or egg hatching. Maintains warmth, humidity, and sometimes oxygen levels for optimal development.",       
+                    },
+                    {
+                      name: "Phototherapy",
+                      img: "https://www.ascomedical.com/wp-content/uploads/2019/09/ANP1202-1.jpg",
+                      department: "Neonatal intensive care unit",
+                      desc: "Uses light therapy to treat newborn jaundice, a condition that causes yellowing of the skin and eyes.",       
+                    },
+                    {
+                      name: "X-ray view box",
+                      img: "https://m.media-amazon.com/images/I/41vl13J72JL.jpg",
+                      department: "Neonatal intensive care unit",
+                      desc: "Illuminated box for viewing X-ray films. Allows doctors to examine bones, fractures, and other internal structures.",       
+                    },
+                    {
+                      name: "Arterial line",
+                      img: "https://image.made-in-china.com/202f0j00uCQVUSrBYjkf/Disposable-Medical-ICU-Anesthesia-IBP-Arterial-Line-Blood-Pressure-Transducer.webp",
+                      department: "Neonatal intensive care unit",
+                      desc: "a thin, flexible tube (catheter) inserted into an artery. It provides continuous monitoring of blood pressure and allows for easy blood sampling.",       
+                    },
+                    {
+                      name: "Nasogastric tube (NG tube)",
+                      img: "https://image.tigermedical.com/Products/LargeImages/COV8888264911.jpg",
+                      department: "Neonatal intensive care unit",
+                      desc: "Thin plastic tube inserted through the nose, down the esophagus, and into the stomach. Used for feeding, medication delivery, or stomach content removal.",       
+                    },
+                    ]
                   },
-
                  {
-                    name:" Radiology department",
+                    name:"Radiology department",
                     hospital: hospital,
                     desc: "The Radiology department in a hospital is a specialized unit designed to provide immediate  medical care to patients with acute illnesses or injuries.",
                      
                   },
 
-{
+                  {
                     name:"Laboratory",
                     hospital: hospital,
                     desc: "The Laboratory in a hospital is a specialized unit designed to provide immediate  medical care to patients with acute illnesses or injuries.",
                      
                   },
 
-{
+                  {
                     name:"General ward",
                     hospital: hospital,
                     desc: "The General ward in a hospital is a specialized unit designed to provide immediate  medical care to patients with acute illnesses or injuries.",
                      
                   },
 
-{
+                  {
                     name:"Operating room /Theatre",
                     hospital: hospital,
                     desc: "The  Operating room /Theatre in a hospital is a specialized unit designed to provide immediate  medical care to patients with acute illnesses or injuries.",
-                     
+                    equipments: [
+                    {
+                      name: "Theatre bed",
+                      img: "https://image.made-in-china.com/202f0j00PteRKyDLZNbH/Ot-K3008c-Manual-Hydraulic-Operating-Table-Operating-Theatre-Bed.webp",
+                      department: "Operating room /Theatre",
+                      desc: "These specialized beds are designed to provide optimal positioning and support for patients during surgery. They are typically adjustable to allow surgeons to access different parts of the body and to accommodate various surgical procedures.",       
+                    },
+                    {
+                      name: "Operating lamp",
+                      img: "https://rlrorwxhnkrqlm5p-static.micyjz.com/cloud/lmBplKrilpSRjjkqmkqmiq/MT02005C20-800-800.jpg",
+                      department: "Operating room /Theatre",
+                      desc: "Also known as a surgical light or surgical lighthead, is a critical piece of equipment in a surgical setting . It's a high-intensity light fixture designed to illuminate the surgical field brightly and without shadows.",       
+                    },
+                    {
+                      name: "Diathermy",
+                      img: "https://www.rbmedical.co.uk/media/1425/diathermy.jpg?mode=boxcrop&width=600&height=400&anchor=&bgcolor=ffffff",
+                      department: "Operating room /Theatre",
+                      desc: "uses high-frequency radio waves or microwaves to deliver deep heat to body tissues.",       
+                    },
+                    {
+                      name: "Electrosurgical unit",
+                      img: "https://www.chinacaremedical.com/u_file/1711/products/23/4d4fc23630.jpg.500x500.jpg",
+                      department: "Operating room /Theatre",
+                      desc: "Utilizes high-frequency electrical current to cut tissue and control bleeding during surgery.",       
+                    },
+                    {
+                      name: "Oxygen concentrator",
+                      img: "https://lifeplusmedical.com/wp-content/uploads/2021/04/Oxygen-concentrator-Grafix.jpg",
+                      department: "Operating room /Theatre",
+                      desc: "It purifies room air to deliver a concentrated stream of oxygen (usually 90-95% pure). It helps people with respiratory problems who have low blood oxygen levels.",       
+                    },
+                    ]
                   },
                   {
                     name:"Emergency Department (ED)",
                     hospital: hospital,
                     desc: "The Emergency Department (ED) in a hospital is a specialized unit designed to provide immediate  medical care to patients with acute illnesses or injuries.",
-                     equipments:[
-                      {
-                        name: "Defibrillator",
-                        img: `https://www.gimaitaly.com/it/assets/altreimmagini/55514.jpg`,
-                        department: "Emergency Department (ED)",
-                        desc: "A defibrillator is a medical device used to deliver an electric shock to the heart in order to restore normal heart rhythm during sudden cardiac arrest.",
-                         equiplog: {
-                          condition: "Functional",
-                          type: "Automated",
-                          serialno: "DEF123456789",
-                          manufacturer: "Meditech Solutions Inc.",
-                          modelno: "DFR-2000",
-                          omanufacturer: "Meditech Innovations Ltd.",
-                          warranty: "Expires on 31/12/2025",
-                          cost: 1500000.00,
-                          rif: "Medium",
-                          location: "Emergency Room",
-                          status: "Available",
-                          supplier: "Lifeline Medical Supplies Ltd.",
-                          purchorder: "PO-123456",
-                          purchcost: 1800000.00,
-                          eac: 2000000.00,
-                          remark: "Device serviced annually; Next maintenance due in July 2024",
-                         },
-                         mainlogs:[
-                          {
-                              id: "1",
-                              equipment: "Defibrillator",
-                              img: `https://www.gimaitaly.com/it/assets/altreimmagini/55514.jpg`,
-                              problem: "Device fails to power on intermittently",
-                              engr: "Reniel Chika",
-                              condition: "On repair",
-                              status: "Manual",
-                              tobtype: "Routine maintenance",
-                              dmd: "21-12-24",
-                          }
-                         ]
-                      }
-                     ]
                   }
                 ]
             }
