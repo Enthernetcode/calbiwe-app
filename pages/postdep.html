@@ -93,7 +93,7 @@
     let cards;
     var currentUser = null;
     currentUser = JSON.parse(localStorage.getItem('user'));
-    if(!currentUser){
+    if(!currentUser?.title==="engr"){
       window.location.href="../index.html"
     }
     if(currentUser?.title==="engr"){
