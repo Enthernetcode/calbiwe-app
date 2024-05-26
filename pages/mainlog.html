@@ -211,15 +211,17 @@
     messagingSenderId: "853865580222",
     appId: "1:853865580222:web:938148d73ffd6a4e2440ef"
     };
-    function printPage() {
-     window.print();
-    }
-    function sharePage() {
-     const url = window.location.href;
-     window.open('https://calbiwe-app.vercel.app' + encodeURIComponent(url));
-    }
-    document.getElementById('printBtn').addEventListener('click', printPage);
-    document.getElementById('shareBtn').addEventListener('click', sharePage);     
+
+    //function printPage() {
+     //window.print();
+    //}
+    //function sharePage() {
+     //const url = window.location.href;
+     //window.open('https://calbiwe-app.vercel.app' + encodeURIComponent(url));
+    //}
+    //document.getElementById('printBtn').addEventListener('click', printPage);
+    //document.getElementById('shareBtn').addEventListener('click', sharePage);     
+
     var app = initializeApp(firebaseConfig);
     var db = getDatabase(); 
     var sRef = sRefe;
