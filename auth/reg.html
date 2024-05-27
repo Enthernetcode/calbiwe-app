@@ -40,18 +40,22 @@
             
             <div class="auth-form  ">
                   <div class="form-floating auth-input-cont">
-                    <input type="apassword" class="form-control" id="apassword" placeholder="aPassword">
+                    <input type="password" class="form-control" id="apassword" placeholder="aPassword">
                     <label id="apasslabel" for="apassword">Admin's password</label>
                   </div>
                   <div class="form-floating auth-input-cont">
-                    <input type="spassword" class="form-control" id="spassword" placeholder="sPassword">
+                    <input type="password" class="form-control" id="spassword" placeholder="sPassword">
                     <label id="spasslabel" for="spassword">Staff's password</label>
                   </div>
                   <div class="form-floating auth-input-cont">
-                    <input type="epassword" class="form-control" id="epassword" placeholder="ePassword">
+                    <input type="password" class="form-control" id="epassword" placeholder="ePassword">
                     <label id="epasslabel" for="epassword">Engineer's password</label>
                   </div>
                 <button id="signup">Sign Up</button>
+            </div>
+            <div class="w-100 d-flex align-items-center gap-2">
+              <input type="checkbox" id="showPassword">
+              <label for="showPassword">Show password</label>
             </div>
             <div class="auth-signin-sub">
                 <div class="auth-signin-sub-child" style="color: teal;">Already registered hospital? <a href="../index.html">Sign in</a></div>
@@ -82,7 +86,18 @@ const firebaseConfig = {
         document.addEventListener("DOMContentLoaded", function () {
 
           const signupButton = document.getElementById("signup");
-         
+          const showPassword = document.getElementById("showPassword");
+          showPassword.addEventListener("change", ()=>{
+            if(showPassword.checked){
+              document.getElementById("apassword").type = "text";
+              document.getElementById("spassword").type = "text";
+              document.getElementById("epassword").type = "text";
+            }else{
+              document.getElementById("apassword").type = "password";
+              document.getElementById("spassword").type = "password";
+              document.getElementById("epassword").type = "password";
+            }
+          })
           signupButton.addEventListener("click", function () {
             let noerr = true;
             // Get user input

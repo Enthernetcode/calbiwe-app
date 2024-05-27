@@ -117,6 +117,10 @@
   <div>Engineer's pass-code:</div>
 <input id="epass" type="password" placeholder="New engineer password" style="outline:none; border: none; background: transparent;">
   </div> 
+  <div class="w-100 d-flex align-items-center p-3 gap-2">
+    <input type="checkbox" id="showPassword">
+    <label for="showPassword">Show password</label>
+  </div>
 
 <div id="update-btn" class="confirm-btn dep formbtn max-w-505 fw-bolder gap-2" style="background: teal;color: #ffffff;">Update</div>
 </div>
@@ -179,6 +183,18 @@ const firebaseConfig = {
         const imageEl = document.getElementById("img");
         const file = document.getElementById("upload");
         let selectedImg;
+        const showPassword = document.getElementById("showPassword");
+          showPassword.addEventListener("change", ()=>{
+            if(showPassword.checked){
+              apass.type = "text";
+              spass.type = "text";
+              epass.type = "text";
+            }else{
+              apass.type = "password";
+              spass.type = "password";
+              epass.type = "password";
+            }
+          })
         getHospital(email,address,apass,spass,epass,imageEl);
         file.addEventListener("change", ()=>{
           selectedImg = file.files[0];

@@ -104,6 +104,10 @@ margin-bottom: 20px;
 cursor: pointer;
 }
 
+.pointer{
+  cursor: pointer;
+}
+
 .auth-logo-cont-form{
 
   display: none;

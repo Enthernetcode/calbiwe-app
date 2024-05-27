@@ -53,6 +53,10 @@
                 </div>
                 <button id="signin">Sign In</button>
             </div>
+            <div class="w-100 d-flex align-items-center gap-2">
+              <input type="checkbox" id="showPassword">
+              <label for="showPassword">Show password</label>
+            </div>
             <div class="auth-signin-sub">
                 <div class="auth-signin-sub-child" style="color: teal;">Admin? <a href="./auth/reset.html">Reset Pass-code</a></div>
                 <div class="auth-signin-sub-child" style="color: teal;">Create? <a href="./auth/signup.html">Sign up</a></div>
@@ -83,7 +87,14 @@
   var db = getDatabase(); 
         document.addEventListener("DOMContentLoaded", function () {
           const signinButton = document.getElementById("signin");
-      
+          const showPassword = document.getElementById("showPassword");
+          showPassword.addEventListener("change", ()=>{
+            if(showPassword.checked){
+              document.getElementById("password").type = "text";
+            }else{
+              document.getElementById("password").type = "password";
+            }
+          })
           signinButton.addEventListener("click", function () {
             let noerr = true;
             // Get user input
@@ -221,40 +232,6 @@
                       console.log(err)
                       signinButton.innerText="Sign In";
                 })
-            //   const loaderContainer = document.createElement("div");
-            //   loaderContainer.classList.add("loader-cont", "gap-4");
-            //   loaderContainer.innerHTML = `
-            //     <div class="auth-img">
-            //       <img src="./assets/logo.png" alt="logo" style="width: 150px;height: 150px;">
-            //     </div>
-            //     <div class="loader-title">Loading up your app..</div>
-            //     <div class="loader-text">This won’t take long</div>
-            //   `;
-            //   document.getElementById("log-body").appendChild(loaderContainer);
-      
-            //   setTimeout(() => {
-            //     window.location.href = "./pages/index.html";
-            //     loaderContainer.remove();
-            //   }, 2000);
-      
-            // } else {
-            //   // Display error message
-            //   const errorAlert = document.createElement("div");
-            //   errorAlert.classList.add("alert");
-            //   errorAlert.innerHTML = `
-            //     <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:red;"></i>
-            //     <div class="alert-text-danger">Invalid password!</div>
-            //   `;
-            //   errorAlert.style.top = "-50px";
-            //   document.getElementById("log-body").appendChild(errorAlert);
-      
-            //   setTimeout(() => {
-            //     errorAlert.style.top = "70px";
-            //   }, 0);
-      
-            //   setTimeout(() => {
-            //     errorAlert.remove();
-            //   }, 2000);
              }
           });
         });
