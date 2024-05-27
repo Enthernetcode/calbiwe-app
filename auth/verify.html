@@ -48,9 +48,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         $(document).ready(function () {
+            const otp = localStorage.getItem("otp");
             $("#verify").click(function () {
-                
-
                 // Get user input
                 var code = $("#otp").val();
               
@@ -58,7 +57,7 @@
                 // Validate inputs
                 var isValid = true;
 
-                if (code.length < 6 ) {
+                if (code.length < 6 || code !== otp) {
                     $("#otplabel").text("Code is incorrect*");
                     $("#otplabel").css("color","red");
                     isValid = false;
@@ -66,9 +65,7 @@
 
                 // If validation passes, log user credentials to the console
                 if (isValid) {
-                    var codepass = {
-                       code: code
-                    };
+                    sessionStorage.setItem("isPassed","yes");
                     const newParag = $(` <div class="alertt">
                         <i class="fa fa-check d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:teal;"></i>
         <div class="alertt-text">OTP verified successfully</div>

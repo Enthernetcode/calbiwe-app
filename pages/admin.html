@@ -152,6 +152,7 @@ const firebaseConfig = {
   if(!currentUser){
       window.location.href="../index.html"
     }
+    
      if(currentUser?.title!=="admin"){window.location.href="../index.html"}
     async function getHospital(email,address,apass,spass,epass,img){
       const hospitalRef = ref(db, "Hospital/"+currentUser.hospital.replace(/[^\w]/g, ""));
@@ -186,7 +187,8 @@ const firebaseConfig = {
         document.querySelector(".yesbtn").addEventListener("click", ()=>{
           document.getElementById("confirm").style.display="none";
           document.getElementById("update-btn").innerText="A moment..."
-          if(!selectedImg||!email.value||!address.value||!apass.value||!spass.value||!epass.value||apass.value<6||spass.value<6||epass.value<6){
+         
+          if(!email.value||!address.value||!apass.value||!spass.value||!epass.value||apass.value<6||spass.value<6||epass.value<6){
           const errorAlert = document.createElement("div");
                 errorAlert.classList.add("alert");
                 errorAlert.innerHTML = `
@@ -205,8 +207,8 @@ const firebaseConfig = {
                   document.getElementById("update-btn").innerHTML=`Update`;
                 }, 2000);
         }else{
-          
-          const fileName = new Date().getTime() + selectedImg.name;
+          if(selectedImg){
+            const fileName = new Date().getTime() + selectedImg.name;
        const storageRef = sRef(storage, fileName);
        const uploadTask = uploadBytesResumable(storageRef, selectedImg);
        uploadTask.on('state_changed', 
@@ -238,15 +240,33 @@ const firebaseConfig = {
                 epassword: epass.value,
                 users: hospitalObject.users,
                 img: downloadURL,
+                departments: hospitalObject?.departments? hospitalObject.departments: [],
          }
          const hospitalRef = ref(db, "Hospital/"+currentUser.hospital.replace(/[^\w]/g, ""));
          update(hospitalRef,updatedHospital).then(()=>{
           document.getElementById("update-btn").innerHTML=`Updated <i class="fa fa-check"></i>`;
          })
         })})
-         
-        // You can now use the downloadURL for further actions (e.g., store in database)
+        }else{
      
+         const updatedHospital = {
+          date: Date.now(),
+                name: hospitalObject.name,
+                email: email.value,
+                hospital: hospitalObject.hospital,
+                address: address.value,
+                apassword: apass.value,
+                spassword: spass.value,
+                epassword: epass.value,
+                users: hospitalObject.users,
+                img: hospitalObject?.img? hospitalObject.img:"",
+                departments: hospitalObject?.departments? hospitalObject.departments: [],
+         }
+         const hospitalRef = ref(db, "Hospital/"+currentUser.hospital.replace(/[^\w]/g, ""));
+         update(hospitalRef,updatedHospital).then(()=>{
+          document.getElementById("update-btn").innerHTML=`Updated <i class="fa fa-check"></i>`;
+         })
+        }    
         }
         })
       }

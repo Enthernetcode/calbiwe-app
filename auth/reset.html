@@ -38,54 +38,165 @@
                     <input type="email" class="form-control" id="email" placeholder="email" >
                     <label id="emailabel" for="email">Email address</label>
                 </div>
+                <div class="form-floating auth-input-cont">
+                    <input type="text" class="form-control" id="name" placeholder="name" >
+                    <label id="namelabel" for="name">Hospital name</label>
+                </div>
                 <button id="reset">Send Me Reset Link</button>
             </div>
+            
             <div class="auth-signin-sub">
                 <div class="auth-signin-sub-child">Remember  pass-code? <a href="../index.html">Sign in</a></div>
             </div>
         </div>
     </main>
-
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/emailjs-com/dist/email.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script >
-        $(document).ready(function () {
-            $("#reset").click(function () {
-                // Validate inputs
-                var isValid = true;
-                var email = $("#email").val();
-                $("#emailabel").text("Email address");
-                if (email === "" || !isValidEmail(email)) {
-                    $("#emailabel").text("Valid email is required*");
-                    $("#emailabel").css("color","red");
-                    isValid = false;
-                }else{
-                    const newParag = $(` <div class="alertt">
-        <i class="fa fa-check d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:teal;"></i>
-        <div class="alertt-text">OTP sent successfully</div>
-    </div>`);
-    newParag.css("top", "-50px");
-                    $("#log-body").append(newParag);
-                    setTimeout(function () {
-                newParag.css("top", "70px");
-            }, 0);
-                    setTimeout(function(){
-      newParag.remove();
-      window.location.href="verify.html"
-    }, 2000);
-                }
-                  
-            // Function to validate email format
-      function isValidEmail(email) {
-                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return emailRegex.test(email);
+    <script type="module">
+         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+        import { getDatabase,ref, get, update, remove,set, child} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+
+        const firebaseConfig = {
+    apiKey: "AIzaSyD_7UtoovjIRudRWjTzPp20V5h7MnnPJ3w",
+  authDomain: "hr-management-f5217.firebaseapp.com",
+  databaseURL: "https://hr-management-f5217-default-rtdb.firebaseio.com",
+  projectId: "hr-management-f5217",
+  storageBucket: "hr-management-f5217.appspot.com",
+  messagingSenderId: "853865580222",
+  appId: "1:853865580222:web:938148d73ffd6a4e2440ef"
+  };
+
+  var app = initializeApp(firebaseConfig);
+  var db = getDatabase(); 
+        document.addEventListener("DOMContentLoaded", function () { // Wait for document to load 
+          const resetButton = document.getElementById("reset");
+          const emailInput = document.getElementById("email");
+          const emailLabel = document.getElementById("emailabel");
+          const nameInput = document.getElementById("name");
+          const nameLabel = document.getElementById("namelabel");
+        
+          resetButton.addEventListener("click", function () {
+            let isValid = true;
+            const email = emailInput.value;
+            const name = nameInput.value;
+        
+            emailLabel.textContent = "Email address"; // Set text content
+        
+            if (email === "" || !isValidEmail(email)) {
+                resetButton.innerText="Send Me Reset LInk"
+              emailLabel.textContent = "Valid email is required*";
+              emailLabel.style.color = "red";
+              isValid = false;
+            }else if(name ===""){
+                resetButton.innerText="Send Me Reset LInk"
+              nameLabel.textContent = "Valid name is required*";
+              nameLabel.style.color = "red";
+              isValid = false;
+            } else {
+                const hospitalRef = ref(db, "Hospital/"+name.replace(/[^\w]/g, ""));
+                get(hospitalRef).then((snapshot) => {
+                     if(!snapshot.val()){
+                        const newAlert = document.createElement("div");
+      newAlert.classList.add("alertt");
+      const checkIcon = document.createElement("i");
+      checkIcon.classList.add("fa", "fa-exclamation", "d-flex", "align-items-center", "justify-content-center");
+      checkIcon.style.cssText = "width:40px;height:40px;color:white; border-radius:50%; background:red;";
+      const alertText = document.createElement("div");
+      alertText.classList.add("alertt-text");
+      alertText.textContent = "No hospital found";
+      newAlert.appendChild(checkIcon);
+      newAlert.appendChild(alertText);
+      const logBody = document.getElementById("log-body");
+      logBody.appendChild(newAlert);
+      newAlert.style.top = "-50px";
+      setTimeout(function () {
+        newAlert.style.top = "70px";
+      }, 0);
+
+      setTimeout(function () {
+        newAlert.remove();
+      }, 2000);
+                     }else{
+                        if(snapshot.val().email!==email){
+                            const newAlert = document.createElement("div");
+      newAlert.classList.add("alertt");
+      const checkIcon = document.createElement("i");
+      checkIcon.classList.add("fa", "fa-exclamation", "d-flex", "align-items-center", "justify-content-center");
+      checkIcon.style.cssText = "width:40px;height:40px;color:white; border-radius:50%; background:red;";
+      const alertText = document.createElement("div");
+      alertText.classList.add("alertt-text");
+      alertText.textContent = "Wrong email address";
+      newAlert.appendChild(checkIcon);
+      newAlert.appendChild(alertText);
+      const logBody = document.getElementById("log-body");
+      logBody.appendChild(newAlert);
+      newAlert.style.top = "-50px";
+      setTimeout(function () {
+        newAlert.style.top = "70px";
+      }, 0);
+
+      setTimeout(function () {
+        newAlert.remove();
+      }, 2000);
+                        }else{
+                            sendEmail();
+                        }
+                     }
+                });
+
+ function sendEmail(){               resetButton.innerText="A moment..."
+        const otp = Math.floor(Math.random() * 1000000).toString().padStart(6, "0");
+        const serviceId = "service_ao75urn";
+              const templateId = "template_tdpbxb7";
+              const publicKey = "MIRKY7yUv_4VJdUdi";
+              
+        const params = {
+                from_name: "Calbiwe",
+                to_email: email,
+                otp: otp,
+              };
+        emailjs.send(serviceId, templateId, params, publicKey)
+                .then(function (response) {
+                  console.log("SUCCESS!", response.status, response.text);
+                  localStorage.setItem("otp", otp);
+                  localStorage.setItem("emailToUse",email);
+                  localStorage.setItem("hospitalToUse",name);
+                  const newAlert = document.createElement("div");
+      newAlert.classList.add("alertt");
+      const checkIcon = document.createElement("i");
+      checkIcon.classList.add("fa", "fa-check", "d-flex", "align-items-center", "justify-content-center");
+      checkIcon.style.cssText = "width:40px;height:40px;color:white; border-radius:50%; background:teal;";
+      const alertText = document.createElement("div");
+      alertText.classList.add("alertt-text");
+      alertText.textContent = "OTP sent successfully";
+      newAlert.appendChild(checkIcon);
+      newAlert.appendChild(alertText);
+      const logBody = document.getElementById("log-body");
+      logBody.appendChild(newAlert);
+      newAlert.style.top = "-50px";
+      setTimeout(function () {
+        newAlert.style.top = "70px";
+      }, 0);
+
+      setTimeout(function () {
+        newAlert.remove();
+        window.location.href = "verify.html";
+      }, 2000);
+                }, function (error) {
+                  console.log("FAILED...", error);
+                  alert("Error sending OTP. Please try again.")
+                })}
             }
-            })
-
-            })
-
-
-    </script>
+          });
+          
+        
+          function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+          }
+        });
+        </script>
 </body>
 </html>

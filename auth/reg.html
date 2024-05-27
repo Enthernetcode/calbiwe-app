@@ -17,6 +17,7 @@
         <div class="auth-cont-left">
             
             <div class="auth-logo-cont">
+              <a style="color: teal;" href="signup.html"><i class="fa fa-arrow-left"></i></a>
                 <div class="auth-img"> <img src="../assets/logo.gif" alt="logo" style="width: 50px;height: 50px;"></div>
                     <span class="auth-logo-text" style="color: red;">
                         Calbiwe
@@ -26,7 +27,7 @@
            </div>
         <div class="auth-cont-right">
             <div class="auth-logo-cont-form">
-               
+              <a  style="color: teal;" href="signup.html"><i class="fa fa-arrow-left"></i></a>
                 <div class="auth-img-form"> <img src="../assets/logo.gif" alt="logo"></div>
                     <span class="auth-logo-text-form" style="color: red;">
                         Calbiwe
@@ -89,7 +90,10 @@ const firebaseConfig = {
             const spassword = document.getElementById("spassword").value;
             const epassword = document.getElementById("epassword").value;
             const users = JSON.parse(localStorage.getItem("users")) || [];
-            const hospital = localStorage.getItem("userh");
+            const name = localStorage.getItem("cname");
+                const email = localStorage.getItem("cemail");
+                const hospital = localStorage.getItem("chospital");
+                const address = localStorage.getItem("caddress");
       
             // Validate inputs
             let isValid = true;
@@ -126,11 +130,33 @@ const firebaseConfig = {
       
             // If validation passes
             if (isValid) {
-                signupButton.innerText="A moment...";
-                const name = localStorage.getItem("cname");
-                const email = localStorage.getItem("cemail");
-                const hospital = localStorage.getItem("chospital");
-                const address = localStorage.getItem("caddress");
+              signupButton.innerText="A moment...";
+              const hospitalRef = ref(db, "Hospital/"+hospital.replace(/[^\w]/g, ""));
+                get(hospitalRef).then((snapshot) => {
+                     if(!snapshot.val()){
+                      register();
+                     }else{
+                      signupButton.innerText="Sign Up";
+                      const errorAlert = document.createElement("div");
+                errorAlert.classList.add("alert");
+                errorAlert.innerHTML = `
+                  <i class="fa fa-exclamation d-flex align-items-center  justify-content-center" style="width:40px;height:40px;color:white; border-radius:50%; background:teal;"></i>
+                  <div class="alert-text-danger">Hospital name already in use!</div>
+                `;
+                errorAlert.style.top = "-50px";
+                document.getElementById("reg-body").appendChild(errorAlert);
+      
+                setTimeout(() => {
+                  errorAlert.style.top = "70px";
+                }, 0);
+      
+                setTimeout(() => {
+                  errorAlert.remove();
+                }, 2000);
+                     }
+                    })
+
+               function register(){
                 console.log(name,email,hospital,address,apassword,spassword,epassword)
                 set(ref(db, "Hospital/"+hospital.replace(/[^\w]/g, "")),
             {
@@ -368,6 +394,7 @@ const firebaseConfig = {
             //       errorAlert.remove();
             //     }, 2000);
             //   }
+          }
             }
           });
         });
